@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import App from './App';
 // Importação do componente FirstAccess, que é a página de primeiro acesso onde os usuários definem suas senhas pela primeira vez
 import FirstAccess from './pages/FirstAccess';
+import SubmitWork from './pages/SubmitWork';
+import ReviewQueue from './pages/ReviewQueue';
+import Certificate from './pages/Certificate';
 
 // Definição das rotas da aplicação utilizando createBrowserRouter.
 // A rota '/login' renderiza o componente Login, que é a página de login da aplicação.
@@ -19,6 +22,9 @@ export const router = createBrowserRouter([
   {
     path: '/', element: <App/>, children: [
       { path: 'first-access', element:  <FirstAccess/> },
+      { path: 'submit', element: <SubmitWork/> },
+      { path: 'review', element: <ReviewQueue/> },
+      { path: 'certificate', element: <Certificate/> },
     ]
   }
 ]);
