@@ -1,21 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './componentes/NavBar';
 import './App.css';
-import { useEffect, useState } from 'react'
-import { supabase } from './infra/supabase/supabaseClient'
+
 
 function App() {
 
-  console.log("URL do Supabase:", process.env.REACT_APP_SUPABASE_URL);
-  const [dados, setDados] = useState([])
-  useEffect(() => {
-    async function fetchItems() {
-      console.log ("Dados - ",supabase)
-      const { data } = await supabase.from('Estado').select('*')
-      setDados(data)
-    }
-    fetchItems()
-  }, []) 
   
   return (
     <>
@@ -33,10 +22,7 @@ function App() {
       {/* Em resumo, o Outlet é essencial para que as rotas filhas sejam renderizadas corretamente dentro do layout do App, garantindo que o conteúdo das páginas seja exibido conforme esperado. */}
       <Outlet />
       {/* Exemplo de exibição dos dados obtidos do Supabase */}
-    <div>
-      <h2>Dados do Supabase:</h2>
-      {dados.map(item => <p key={item.id}>{item.nome}</p>)}
-    </div>
+
       
     </>
   );

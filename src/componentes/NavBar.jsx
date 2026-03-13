@@ -7,6 +7,7 @@ export default function NavBar(){
       <NavLink to="/review">Revisão</NavLink>
       <NavLink to="/certificate">Certificado</NavLink>
       <NavLink to="/admin/faculties">Estrutura</NavLink>
+      <NavLink to="/admin/estado">Dados sistema</NavLink>
       <NavLink to="/login">Entrar</NavLink>
     </nav>
   );

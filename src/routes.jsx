@@ -13,6 +13,7 @@ import ReviewQueue from './pages/ReviewQueue';
 import Certificate from './pages/Certificate';
 import Dashboard from './pages/Dashboard';
 import Faculties from './pages/admin/Faculties';
+import Estado from './pages/admin/Estado';
 
 // Definição das rotas da aplicação utilizando createBrowserRouter.
 // A rota '/login' renderiza o componente Login, que é a página de login da aplicação.
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
       { path: 'certificate', element: <Certificate/> },
 
       { path: 'admin/faculties', element:  <Faculties/> },
+      { path: 'admin/estado', element:  <Estado/> },
 
     ]
   }
