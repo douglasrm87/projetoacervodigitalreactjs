@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+// DetailsPage está usando os dados cadastrados no arquivo locations.js. Formato JSON
 import { hardRockLocations } from './locations';
 
 const DetailsPage = () => {
