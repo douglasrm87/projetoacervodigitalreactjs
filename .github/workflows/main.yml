@@ -38,7 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist' # Mude para './build' se você usa Create React App em vez de Vite
+          path: './build' # Mude para './build' se você usa Create React App em vez de Vite
 
       - name: Deploy to GitHub Pages
         id: deployment
