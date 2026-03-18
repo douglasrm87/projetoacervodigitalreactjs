@@ -1,0 +1,103 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --error-bg: #fee2e2;
+  --error-text: #b91c1c;
+  --border-color: #d1d5db;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Centralização da página */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  font-family: 'Inter', system-ui, sans-serif;
+  padding: 20px;
+}
+
+#ttlLogin {
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+/* Card do Formulário */
+.grid {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Labels e Inputs */
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: -0.75rem; /* Aproxima a label do input */
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Mensagem de Erro */
+.error {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  text-align: center;
+  border: 1px solid rgba(185, 28, 28, 0.2);
+}
+
+/* Botão */
+button {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+button:active {
+  transform: scale(0.98);
+}

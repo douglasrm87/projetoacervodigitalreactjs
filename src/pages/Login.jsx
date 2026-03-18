@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.module.css';
 
 // Ajustes para o login completo
 import { useAuth } from '../contexts/AuthContext';
