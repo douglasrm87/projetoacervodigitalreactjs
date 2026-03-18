@@ -1,32 +1,45 @@
-name: Deploy Acervo Digital
+name: Deploy Frontend Acervo Digital
 
 on:
   push:
-    branches: [ main ] # Dispara o deploy sempre que você der push na main
+    branches: ["main"] # Altere para 'master' se for o nome da sua branch principal
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout do Código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
-      # Passo 1: Instalar e Buildar o Frontend (React)
-      - name: Build Frontend
-        run: |
-          npm install
-          npm run build
-        # Nota: Ajuste o comando se o seu package.json do React estiver em uma subpasta
+      - name: Install dependencies
+        run: npm install
 
-      # Passo 2: Instalar Dependências do Backend
-      - name: Setup Backend
-        run: |
-          cd backend
-          npm install
-          
+      - name: Build
+        run: npm run build
+        env:
+          # Aqui você colocará a URL do seu backend no futuro (OCI/Render/Railway)
+          # Por enquanto, ele tentará ler do localhost ou falhará silenciosamente
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # Mude para './build' se você usa Create React App em vez de Vite
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
