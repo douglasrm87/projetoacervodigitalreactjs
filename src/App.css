@@ -17,7 +17,7 @@ body{
 .nav{
   display:flex; /* Define o layout como flexível, permitindo que os itens dentro da barra de navegação sejam organizados de forma flexível e responsiva.*/
   align-items:center;
-  justify-content:space-between;
+  justify-content:space-between;  
   gap:.5rem; /* Adiciona um espaçamento de 0.5rem entre os itens dentro da barra de navegação, melhorando a legibilidade e a estética visual. */
   padding:1rem 2rem; /* Adiciona um espaçamento interno de 1rem em torno do conteúdo da barra de navegação, proporcionando um layout mais agradável e organizado. */
   background:#fff;/* Define a cor de fundo da barra de navegação como branco, criando um contraste visual com o conteúdo e melhorando a legibilidade. */ 
@@ -51,6 +51,11 @@ Sem a classe .container, o conteúdo da página ficaria desorganizado e sem esti
   background:#fff;
   border-radius:12px;
   box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+  /* Ajuste para responsividade: 
+   Ajuste para telas menores que o max-width */
+  width: 90%; 
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho final */
 }
 
 /* GRID */
@@ -100,3 +105,57 @@ Usado no arquivo login.jsx.
   border:1px solid var(--border);
   box-shadow:0 4px 12px rgba(0,0,0,.05);
 }
+
+/* MEDIA QUERIES (O toque de responsividade) */
+
+/* Celulares e Tablets pequenos */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column; /* Empilha os itens da nav verticalmente se necessário */
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .container {
+    margin: 1rem auto;
+    padding: 1.5rem;
+    width: 95%; /* Ocupa quase toda a tela no celular */
+    border-radius: 8px;
+  }
+
+  #ttlLogin {
+    font-size: 1.5rem; /* Título um pouco menor no mobile */
+    text-align: center;
+  }
+
+  .grid {
+    gap: 1rem; /* Diminui o espaçamento para ganhar espaço vertical */
+  }
+}
+
+/* Dispositivos muito pequenos (iPhone SE, etc) */
+@media (max-width: 480px) {
+  .nav a {
+    font-size: 0.9rem;
+    padding: .4rem .5rem;
+  }
+  
+  .button {
+    width: 100%; /* Botão ocupa a largura toda no celular */
+  }
+}
+
+/*
+Dicas
+
+O que mudou e por quê?
+width: 90% e 95%: Em telas grandes, o max-width: 900px segura o tamanho. Em telas menores, o width percentual garante que o container nunca "vaze" para fora da tela, mantendo uma margem de respiro nas laterais.
+
+box-sizing: border-box: Fundamental para evitar que o padding empurre o elemento para fora da tela.
+
+flex-direction: column na Nav: Em telas muito estreitas, os links da barra de navegação podem se atropelar. Mudar para coluna (ou permitir que eles quebrem linha) resolve o problema de sobreposição.
+
+Botões Full-Width: Em dispositivos móveis, é uma boa prática de UX (Experiência do Usuário) que o botão de ação ocupe toda a largura, facilitando o clique com o polegar.
+
+
+*/

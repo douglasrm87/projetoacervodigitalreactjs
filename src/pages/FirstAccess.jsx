@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // Aula 04
 import { useAuth } from '../contexts/AuthContext';
+import './Login.module.css';
  
 // A função onSubmit é responsável por lidar com o evento de envio do formulário de primeiro acesso, realizando a validação das senhas e redirecionando o usuário para a página apropriada com base no resultado da validação. Ela é necessária para processar as informações de senha fornecidas pelo usuário, verificar se as senhas correspondem e determinar se o acesso deve ser concedido ou negado. Sem a função onSubmit, o formulário de primeiro acesso não teria funcionalidade, e os usuários não seriam capazes de definir suas senhas ou acessar as áreas protegidas da aplicação.
 // O return é responsável por renderizar a interface do usuário do componente de primeiro acesso, incluindo os campos de entrada para senha e confirmação de senha, o botão de envio e a exibição de mensagens de erro. Ele é necessário para fornecer uma interface interativa para os usuários definirem suas senhas e receberem feedback sobre o status da validação. Sem o return, o componente não renderizaria nada na tela, tornando impossível para os usuários interagirem com o formulário de primeiro acesso ou receberem informações sobre erros de validação.  
