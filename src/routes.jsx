@@ -13,7 +13,7 @@ import ReviewQueue from './pages/ReviewQueue';
 import Certificate from './pages/Certificate';
 import Dashboard from './pages/Dashboard';
 import Faculties from './pages/admin/Faculties';
-import Estado from './pages/admin/Estado';
+import Estado from './pages/admin/Estado'; // Utiliza o supabase para obter os dados do estado do sistema
 import MapPage from './mapabrasil/MapPage';
 import DetailsPage from './mapabrasil/DetailsPage';
 import MapPageBD from './mapabrasilargentinabd/MapPageBD';
@@ -39,6 +39,7 @@ const currentBasename = process.env.NODE_ENV === 'production'
 // index: Define a rota raiz como a página de primeiro acesso. Isso significa que quando os usuários acessarem a URL raiz ("/"), eles serão redirecionados automaticamente para a página de primeiro acesso, onde poderão definir suas senhas pela primeira vez. Essa configuração é útil para garantir que os usuários sejam direcionados para a página correta ao acessar a aplicação pela primeira vez, proporcionando uma experiência de usuário mais intuitiva e eficiente. Sem essa configuração, os usuários poderiam acessar a URL raiz sem serem redirecionados para a página de primeiro acesso, o que poderia resultar em confusão e dificultar o processo de definição de senha para novos usuários.
 export const router = createBrowserRouter([
   { path: '/login', element: <Login/> },
+  { path: '/projetoacervodigitalreactjs', element:  <App/> },
   {
     path: '/', element: <App/>, children: [
       { index: true, element: <Dashboard/> },
