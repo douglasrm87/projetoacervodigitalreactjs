@@ -62,16 +62,6 @@
     height: 18px;
 }
 
-/* --- AJUSTE SOLICITADO AQUI --- */
-.checkboxGroup {
-    display: flex;
-    flex-direction: column; /* Garante que fiquem um embaixo do outro */
-    align-items: flex-start; /* Alinha todos os itens estritamente à esquerda */
-    gap: 1rem;             /* Espaçamento vertical entre as opções */
-    margin-top: 1rem;
-    padding-left: 0.5rem;    /* Pequeno recuo para não colar na borda, se desejar */
-    width: 100%;             /* Ocupa a largura total do container */
-}
 
 
 /* Ajuste opcional para o input de checkbox */
@@ -185,4 +175,61 @@ barra de progresso
     font-size: 0.75rem;
     font-weight: 600;
     white-space: nowrap;
+}
+
+/* Container pai que agrupa todos os itens */
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Espaçamento entre as linhas */
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Cada linha (Checkbox + Texto) */
+.checkboxItem {
+    display: flex;
+    flex-direction: row;    /* Garante que fiquem lado a lado */
+    align-items: flex-start; /* Alinha o checkbox ao topo do texto se o nome for longo */
+    gap: 12px;              /* Espaço entre o quadrado e o texto */
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+/* Efeito de hover para facilitar a visualização no desktop */
+.checkboxItem:hover {
+    background-color: #f3f4f6;
+}
+
+/* Estilo do Input (o quadradinho) */
+.checkboxInput {
+    width: 20px;
+    height: 20px;
+    margin: 0;             /* Remove margens padrão que desalinhamento */
+    cursor: pointer;
+    flex-shrink: 0;        /* Impede que o checkbox diminua se o texto for grande */
+    accent-color: #003a8f; /* Cor personalizada do checkbox (moderno) */
+}
+
+/* Estilo do Texto (Label) */
+.checkboxLabel {
+    font-size: 1rem;
+    line-height: 1.25;     /* Ajusta a altura da linha para alinhar com o checkbox */
+    color: #374151;
+    cursor: pointer;
+    user-select: none;     /* Impede que o usuário selecione o texto por erro ao clicar rápido */
+    width: 100%;           /* Faz com que o clique em toda a linha funcione */
+}
+
+/* Ajuste Responsivo para telas pequenas (Mobile) */
+@media (max-width: 600px) {
+    .checkboxLabel {
+        font-size: 0.95rem; /* Texto levemente menor em celulares */
+    }
+    
+    .checkboxItem {
+        padding: 10px 5px;  /* Aumenta a área de toque no mobile */
+    }
 }

@@ -246,41 +246,39 @@ const SubmitWork = () => {
               </label>
               
               {/* Este é o container principal da lista */}
-              <div className={styles.checkboxContainer}>
-                {
-                  dadosCursosNucleo.length > 0 ? (
-                  dadosCursosNucleo.map((curso) => (
-                    /* Este container garante que o input e o label fiquem na mesma linha */
-                    <div key={curso.id_curso_nucleo} className={styles.checkboxItem}>
-                      <label htmlFor={`curso.${curso.id_curso_nucleo}`} 
-                            className={styles.checkboxLabel}>
-                        {curso.nome_curso_nucleo}
-                      </label>
-                      <input
-                        type="checkbox"
-                        id={`curso.${curso.id_curso_nucleo}`}
-                        className={styles.checkboxInput}
-                        value={curso.id_curso_nucleo} 
-                        checked={formData.cursos.includes(Number(curso.id_curso_nucleo))}
-                        onChange={(e) => {
-                          const cursoId = Number(e.target.value);
-                          let novosCursos = [...formData.cursos];
-                          if (e.target.checked) {
-                            if (!novosCursos.includes(cursoId)) novosCursos.push(cursoId);
-                          } else {
-                            novosCursos = novosCursos.filter(id => id !== cursoId);
-                          }
-                          setFormData({ ...formData, cursos: novosCursos });
-                          
-                        }}
-                        
-                      />
-                    </div>
-                  ))
-                ) : (
-                  <p className={styles.tip}>Nenhum curso disponível.</p>
-                )}
-              </div>
+              <div className={styles.checkboxGroup}>
+  {dadosCursosNucleo.length > 0 ? (
+    dadosCursosNucleo.map((curso) => (
+      <div key={curso.id_curso_nucleo} className={styles.checkboxItem}>
+        <input
+          type="checkbox"
+          id={`curso.${curso.id_curso_nucleo}`}
+          className={styles.checkboxInput}
+          value={curso.id_curso_nucleo}
+          checked={formData.cursos.includes(Number(curso.id_curso_nucleo))}
+          onChange={(e) => {
+            const cursoId = Number(e.target.value);
+            let novosCursos = [...formData.cursos];
+            if (e.target.checked) {
+              if (!novosCursos.includes(cursoId)) novosCursos.push(cursoId);
+            } else {
+              novosCursos = novosCursos.filter(id => id !== cursoId);
+            }
+            setFormData({ ...formData, cursos: novosCursos });
+          }}
+        />
+        <label 
+          htmlFor={`curso.${curso.id_curso_nucleo}`} 
+          className={styles.checkboxLabel}
+        >
+          {curso.nome_curso_nucleo}
+        </label>
+      </div>
+    ))
+  ) : (
+    <p className={styles.tip}>Nenhum curso disponível.</p>
+  )}
+</div>
             </div>
           )}
 
