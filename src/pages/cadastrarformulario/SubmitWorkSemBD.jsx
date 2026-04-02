@@ -65,7 +65,7 @@ const SubmitWork = () => {
           onChange={(e) => setFormData({...formData, nucleo: e.target.value})}
         >
           <option value="">Selecione...</option>
-          <option value="LTD/NID">LTD/NID - Laboratório de Transformação Digital</option>
+          <option value="LTD-NID">LTD/NID - Laboratório de Transformação Digital</option>
           <option value="NAC">NAC - Núcleo de apoio a Carreiras</option>
           <option value="LPG">LPG</option>
           <option value="NAF">NAF - Núcleo de apoio Financeiro</option>
