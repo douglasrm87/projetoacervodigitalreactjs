@@ -17,6 +17,8 @@ export default function NavBar(){
       
       <NavLink to="/admin/faculties">Estrutura</NavLink>
       <NavLink to="/review">Revisão</NavLink>
+
+      <NavLink to="/oficina">Oficina</NavLink>
     </nav>
   );
 }

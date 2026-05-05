@@ -22,6 +22,7 @@ import CertificateContainer from './pages/certificado/CertificateContainer';
 import MapaUnidadesFaculdade from './unidadesfaculdade/MapaUnidadesFaculdade';
 import ConsultaUnidade from './unidadesfaculdade/ConsultaUnidade';
 import Dashboard from './pages/dashboard/Dashboard';
+import Oficina from './pages/Oficina';
 
 // Definição das rotas da aplicação utilizando createBrowserRouter.
 // A rota '/login' renderiza o componente Login, que é a página de login da aplicação.
@@ -68,6 +69,8 @@ export const router = createBrowserRouter([
 
       { path: "/unidadesfaculdade", element: <MapaUnidadesFaculdade />},
       { path: "/detalhesunidade/:id", element: <ConsultaUnidade />},
+
+      { path: "/oficina/", element: <Oficina />},
 
     ]
   }
