@@ -15,7 +15,7 @@ export default function NavBar(){
       {/* <NavLink to="/mapabrasil">Mapa Hard Rock</NavLink> */}
       <NavLink to="/mapabrasilbd">Mapa Hard Rock Banco de Dados</NavLink>
       
-      <NavLink to="/admin/faculties">Estrutura</NavLink>
+      <NavLink to="/bibliotecanucleos">Nucleos Extensão</NavLink>
       <NavLink to="/review">Revisão</NavLink>
 
       <NavLink to="/oficina">Oficina</NavLink>

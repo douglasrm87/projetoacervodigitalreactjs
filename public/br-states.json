@@ -1,0 +1,32 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {"type": "Feature", "properties": {"name": "Acre", "sigla": "AC"}, "geometry": {"type": "Polygon", "coordinates": [[[-73.98591, -4.23168], [-73.98591, -10.996, -66.82577, -10.996, -66.82577, -4.23168, -73.98591, -4.23168]]]},
+    {"type": "Feature", "properties": {"name": "Alagoas", "sigla": "AL"}, "geometry": {"type": "Polygon", "coordinates": [[[-37.67123, -8.81619], [-37.67123, -10.48657, -35.11842, -10.48657, -35.11842, -8.81619, -37.67123, -8.81619]]]},
+    {"type": "Feature", "properties": {"name": "Amapá", "sigla": "AP"}, "geometry": {"type": "Polygon", "coordinates": [[[-54.80182, -0.90817], [-54.80182, 4.98399, -50.73456, 4.98399, -50.73456, -0.90817, -54.80182, -0.90817]]]},
+    {"type": "Feature", "properties": {"name": "Amazonas", "sigla": "AM"}, "geometry": {"type": "Polygon", "coordinates": [[[-73.98591, -0.03571], [-73.98591, -5.58305, -59.97549, -5.58305, -59.97549, -0.03571, -73.98591, -0.03571]]]},
+    {"type": "Feature", "properties": {"name": "Bahia", "sigla": "BA"}, "geometry": {"type": "Polygon", "coordinates": [[[-49.66391, -9.65014], [-49.66391, -18.34791, -38.27456, -18.34791, -38.27456, -9.65014, -49.66391, -9.65014]]]},
+    {"type": "Feature", "properties": {"name": "Ceará", "sigla": "CE"}, "geometry": {"type": "Polygon", "coordinates": [[[-41.47768, -2.78953], [-41.47768, -7.92101, -34.87946, -7.92101, -34.87946, -2.78953, -41.47768, -2.78953]]]},
+    {"type": "Feature", "properties": {"name": "Distrito Federal", "sigla": "DF"}, "geometry": {"type": "Polygon", "coordinates": [[[-48.27667, -15.50741], [-48.27667, -16.04814, -47.30449, -16.04814, -47.30449, -15.50741, -48.27667, -15.50741]]]},
+    {"type": "Feature", "properties": {"name": "Espírito Santo", "sigla": "ES"}, "geometry": {"type": "Polygon", "coordinates": [[[-41.89457, -17.87904], [-41.89457, -21.32629, -39.64531, -21.32629, -39.64531, -17.87904, -41.89457, -17.87904]]]},
+    {"type": "Feature", "properties": {"name": "Goiás", "sigla": "GO"}, "geometry": {"type": "Polygon", "coordinates": [[[-53.62512, -13.00195], [-53.62512, -19.48277, -46.06109, -19.48277, -46.06109, -13.00195, -53.62512, -13.00195]]]},
+    {"type": "Feature", "properties": {"name": "Maranhão", "sigla": "MA"}, "geometry": {"type": "Polygon", "coordinates": [[[-48.64445, -1.09182], [-48.64445, -10.28193, -41.78952, -10.28193, -41.78952, -1.09182, -48.64445, -1.09182]]]},
+    {"type": "Feature", "properties": {"name": "Mato Grosso", "sigla": "MT"}, "geometry": {"type": "Polygon", "coordinates": [[[-60.98586, -7.94728], [-60.98586, -18.04623, -50.30165, -18.04623, -50.30165, -7.94728, -60.98586, -7.94728]]]},
+    {"type": "Feature", "properties": {"name": "Mato Grosso do Sul", "sigla": "MS"}, "geometry": {"type": "Polygon", "coordinates": [[[-58.0054, -19.00483], [-58.0054, -23.23431, -53.62512, -23.23431, -53.62512, -19.00483, -58.0054, -19.00483]]]},
+    {"type": "Feature", "properties": {"name": "Minas Gerais", "sigla": "MG"}, "geometry": {"type": "Polygon", "coordinates": [[[-46.23868, -14.22521], [-46.23868, -22.91915, -39.64531, -22.91915, -39.64531, -14.22521, -46.23868, -14.22521]]]},
+    {"type": "Feature", "properties": {"name": "Pará", "sigla": "PA"}, "geometry": {"type": "Polygon", "coordinates": [[[-60.20428, -1.00659], [-60.20428, -4.56245, -49.28912, -4.56245, -49.28912, -1.00659, -60.20428, -1.00659]]]},
+    {"type": "Feature", "properties": {"name": "Paraíba", "sigla": "PB"}, "geometry": {"type": "Polygon", "coordinates": [[[-38.15128, -6.77175], [-38.15128, -8.26989, -34.79087, -8.26989, -34.79087, -6.77175, -38.15128, -6.77175]]]},
+    {"type": "Feature", "properties": {"name": "Paraná", "sigla": "PR"}, "geometry": {"type": "Polygon", "coordinates": [[[-54.57667, -22.5165], [-54.57667, -26.72528, -48.01051, -26.72528, -48.01051, -22.5165, -54.57667, -22.5165]]]},
+    {"type": "Feature", "properties": {"name": "Pernambuco", "sigla": "PE"}, "geometry": {"type": "Polygon", "coordinates": [[[-41.27293, -7.27265], [-41.27293, -9.82823, -34.79087, -9.82823, -34.79087, -7.27265, -41.27293, -7.27265]]]},
+    {"type": "Feature", "properties": {"name": "Piauí", "sigla": "PI"}, "geometry": {"type": "Polygon", "coordinates": [[[-45.99741, -2.73054], [-45.99741, -10.9235, -40.31659, -10.9235, -40.31659, -2.73054, -45.99741, -2.73054]]]},
+    {"type": "Feature", "properties": {"name": "Rio de Janeiro", "sigla": "RJ"}, "geometry": {"type": "Polygon", "coordinates": [[[-44.88257, -20.75166], [-44.88257, -28.54569, -40.96757, -28.54569, -40.96757, -20.75166, -44.88257, -20.75166]]]},
+    {"type": "Feature", "properties": {"name": "Rio Grande do Norte", "sigla": "RN"}, "geometry": {"type": "Polygon", "coordinates": [[[-37.34168, -4.82623], [-37.34168, -6.98353, -34.79087, -6.98353, -34.79087, -4.82623, -37.34168, -4.82623]]]},
+    {"type": "Feature", "properties": {"name": "Rio Grande do Sul", "sigla": "RS"}, "geometry": {"type": "Polygon", "coordinates": [[[-57.58904, -27.04373], [-57.58904, -33.67494, -49.69393, -33.67494, -49.69393, -27.04373, -57.58904, -27.04373]]]},
+    {"type": "Feature", "properties": {"name": "Rondônia", "sigla": "RO"}, "geometry": {"type": "Polygon", "coordinates": [[[-66.42074, -7.9755], [-66.42074, -13.76768, -59.83261, -13.76768, -59.83261, -7.9755, -66.42074, -7.9755]]]},
+    {"type": "Feature", "properties": {"name": "Roraima", "sigla": "RR"}, "geometry": {"type": "Polygon", "coordinates": [[[-64.8196, 1.01394], [-64.8196, 5.27294, -59.54284, 5.27294, -59.54284, 1.01394, -64.8196, 1.01394]]]},
+    {"type": "Feature", "properties": {"name": "Santa Catarina", "sigla": "SC"}, "geometry": {"type": "Polygon", "coordinates": [[[-53.83502, -24.96582], [-53.83502, -29.64131, -48.63941, -29.64131, -48.63941, -24.96582, -53.83502, -24.96582]]]},
+    {"type": "Feature", "properties": {"name": "São Paulo", "sigla": "SP"}, "geometry": {"type": "Polygon", "coordinates": [[[-49.11858, -19.76022], [-49.11858, -25.31456, -44.36138, -25.31456, -44.36138, -19.76022, -49.11858, -19.76022]]]},
+    {"type": "Feature", "properties": {"name": "Sergipe", "sigla": "SE"}, "geometry": {"type": "Polygon", "coordinates": [[[-38.27456, -9.54238], [-38.27456, -11.27221, -36.41882, -11.27221, -36.41882, -9.54238, -38.27456, -9.54238]]]},
+    {"type": "Feature", "properties": {"name": "Tocantins", "sigla": "TO"}, "geometry": {"type": "Polygon", "coordinates": [[[-50.73456, -4.98399], [-50.73456, -10.2262, -47.47788, -10.2262, -47.47788, -4.98399, -50.73456, -4.98399]]}}
+  ]
+}
