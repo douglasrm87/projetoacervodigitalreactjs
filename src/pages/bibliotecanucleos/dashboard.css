@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.dashboard {
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.header {
+  background: #002F6C;
+  color: white;
+  padding: 16px;
+}
+
+.main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.map-section {
+  flex: 2;
+}
+
+.map {
+  height: 500px;
+  border-radius: 8px;
+}
+
+.details-section {
+  flex: 1;
+}
+
+.info-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.table-container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  background: white;
+  border-collapse: collapse;
+}
+
+th {
+  background: #002F6C;
+  color: white;
+}
+
+td, th {
+  padding: 8px;
+  border: 1px solid #eee;
+}
