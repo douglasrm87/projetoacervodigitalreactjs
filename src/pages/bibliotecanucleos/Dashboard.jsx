@@ -10,6 +10,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import { supabase } from '../../infra/supabase/supabaseClient';
 import './Dashboard.css';
+import L from 'leaflet'; 
 
 export default function Dashboard() {
   // Estados de Localização e Navegação
@@ -145,15 +146,14 @@ export default function Dashboard() {
 
   // 4. Clique no Estado / Município - com lógica diferenciada por tamanho de tela
   const handleGeographyClick = async (geo) => {
-    const siglaEstado = geo.properties.sigla;
+    const siglaEstado = geo.properties?.sigla || geo.properties?.SIGLA;
+    if (!siglaEstado) return;
     
     if (selectedState === siglaEstado) {
-      // Se já estava selecionado, deseleciona
       setSelectedState(null);
       setTableData([]);
       setShowFilters(false);
     } else {
-      // Seleciona novo estado
       setSelectedState(siglaEstado);
       setShowFilters(true);
       await fetchStateData(siglaEstado);
@@ -236,50 +236,73 @@ export default function Dashboard() {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; OpenStreetMap contributors'
                 />
-                {geoJsonData && (
-                  <GeoJSON 
-                    data={geoJsonData}
-                    onEachFeature={(feature, layer) => {
-                      const sigla = feature.properties.sigla;
-                      const isSelected = selectedState === sigla;
-                      
-                      // Estilo do estado
-                      layer.setStyle({
-                        fillColor: isSelected ? 'var(--estacio-blue-light)' : '#E2E8F0',
-                        weight: 1,
-                        opacity: 1,
-                        color: '#FFFFFF',
-                        dashArray: '3',
-                        fillOpacity: 0.7
-                      });
-                      
-                      // Interações
-                      layer.on('mouseenter', () => {
-                        layer.setStyle({
-                          fillColor: 'var(--estacio-blue-dark)',
-                          weight: 2,
-                          color: 'var(--estacio-cyan)',
-                          fillOpacity: 0.8
-                        });
-                        handleStateHover(sigla);
-                      });
-                      
-                      layer.on('mouseleave', () => {
-                        layer.setStyle({
-                          fillColor: isSelected ? 'var(--estacio-blue-light)' : '#E2E8F0',
-                          weight: 1,
-                          color: '#FFFFFF',
-                          fillOpacity: 0.7
-                        });
-                        handleStateLeave();
-                      });
-                      
-                      layer.on('click', () => {
-                        handleGeographyClick(feature);
-                      });
-                    }}
-                  />
-                )}
+
+                  {/* Visual dos itens do mapa */}
+                 {geoJsonData && (
+                        <GeoJSON 
+                            data={geoJsonData}
+                            // 1. Intercepta os dados locais e os renderiza como círculos elegantes em vez de retângulos
+                            pointToLayer={(feature, latlng) => {
+                            const sigla = feature.properties?.sigla;
+                            const isSelected = selectedState === sigla;
+
+                            return L.circleMarker(latlng, {
+                                radius: isSelected ? 12 : 8,                  // Aumenta o tamanho se estiver selecionado
+                                fillColor: isSelected ? '#00A3E0' : '#002F6C', // Azul claro se selecionado, Azul escuro corporativo se padrão
+                                color: '#00C4D5',                             // Borda em Ciano para excelente contraste e acabamento
+                                weight: 2,
+                                opacity: 1,
+                                fillOpacity: 0.9
+                            });
+                            }}
+                            // 2. Calcula o centro geográfico do quadrado para plotar a bola no meio do estado
+                            coordsToLatLng={(coords) => {
+                            // Se receber a estrutura de polígono do quadrado, calcula o ponto médio (centroide)
+                            if (Array.isArray(coords) && coords.length >= 4) {
+                                const lats = coords.map(c => c[1]);
+                                const lngs = coords.map(c => c[0]);
+                                const minLat = Math.min(...lats);
+                                const maxLat = Math.max(...lats);
+                                const minLng = Math.min(...lngs);
+                                const maxLng = Math.max(...lngs);
+                                
+                                return L.latLng((minLat + maxLat) / 2, (minLng + maxLng) / 2);
+                            }
+                            return L.latLng(coords[1], coords[0]);
+                            }}
+                            onEachFeature={(feature, layer) => {
+                            const sigla = feature.properties?.sigla;
+                            
+                            layer.on('mouseenter', () => {
+                                if (layer.setStyle) {
+                                layer.setStyle({
+                                    fillColor: '#00A3E0', // Destaca em azul claro ao passar o mouse
+                                    radius: 11
+                                });
+                                }
+                                handleStateHover(sigla);
+                            });
+                            
+                            layer.on('mouseleave', () => {
+                                const isSelected = selectedState === sigla;
+                                if (layer.setStyle) {
+                                layer.setStyle({
+                                    fillColor: isSelected ? '#00A3E0' : '#002F6C',
+                                    radius: isSelected ? 12 : 8
+                                });
+                                }
+                                handleStateLeave();
+                            });
+                            
+                            layer.on('click', () => {
+                                handleGeographyClick(feature);
+                            });
+                            }}
+                        />
+                        )}
+
+
+
               </MapContainer>
             </div>
 
@@ -317,7 +340,7 @@ export default function Dashboard() {
               </div>
             )}
 
-            {/* Painel de Filtros de Instituições (Aparece quando showFilters = true) */}
+            {/* Painel de Filtros de Instituições */}
             {showFilters && selectedState && !selectedMunicipio && (
               <div className="filter-section" style={{ marginTop: '1.5rem' }}>
                 <div className="filter-group">
@@ -337,7 +360,7 @@ export default function Dashboard() {
             )}
           </div>
 
-          {/* Tabela de Visão Analítica - Estado (Tela Pequena) */}
+          {/* Tabela de Visão Analítica - Estado */}
           {selectedState && !selectedMunicipio && (
             <div className="table-container">
               <h3 className="table-title">
@@ -381,7 +404,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* Tabela de Município (Tela Grande) */}
+          {/* Tabela de Município */}
           {selectedMunicipio && (
             <div className="table-container">
               <h3 className="table-title">
@@ -523,13 +546,22 @@ export default function Dashboard() {
                     </p>
                   </div>
 
+                  {/* CORREÇÃO DO BUG DA IMAGEM QUADRADA CINZA: Validação estrita contra URLs quebradas do banco */}
                   <div className="detail-block">
                     <h4>📸 Evidências de Campo (Fotos)</h4>
                     <div className="evidence-gallery">
-                      {selectedNucleo.evidencia01_foto && <img src={selectedNucleo.evidencia01_foto} alt="Evidência 1" className="evidence-thumb" />}
-                      {selectedNucleo.evidencia02_foto && <img src={selectedNucleo.evidencia02_foto} alt="Evidência 2" className="evidence-thumb" />}
-                      {selectedNucleo.evidencia03_foto && <img src={selectedNucleo.evidencia03_foto} alt="Evidência 3" className="evidence-thumb" />}
-                      {!selectedNucleo.evidencia01_foto && !selectedNucleo.evidencia02_foto && !selectedNucleo.evidencia03_foto && (
+                      {selectedNucleo.evidencia01_foto && selectedNucleo.evidencia01_foto.startsWith('http') && (
+                        <img src={selectedNucleo.evidencia01_foto} alt="Evidência 1" className="evidence-thumb" onError={(e) => e.target.style.display='none'} />
+                      )}
+                      {selectedNucleo.evidencia02_foto && selectedNucleo.evidencia02_foto.startsWith('http') && (
+                        <img src={selectedNucleo.evidencia02_foto} alt="Evidência 2" className="evidence-thumb" onError={(e) => e.target.style.display='none'} />
+                      )}
+                      {selectedNucleo.evidencia03_foto && selectedNucleo.evidencia03_foto.startsWith('http') && (
+                        <img src={selectedNucleo.evidencia03_foto} alt="Evidência 3" className="evidence-thumb" onError={(e) => e.target.style.display='none'} />
+                      )}
+                      {(!selectedNucleo.evidencia01_foto || !selectedNucleo.evidencia01_foto.startsWith('http')) && 
+                       (!selectedNucleo.evidencia02_foto || !selectedNucleo.evidencia02_foto.startsWith('http')) && 
+                       (!selectedNucleo.evidencia03_foto || !selectedNucleo.evidencia03_foto.startsWith('http')) && (
                         <p style={{color: 'var(--text-muted)', gridColumn: '1 / -1'}}>Sem evidências registradas</p>
                       )}
                     </div>

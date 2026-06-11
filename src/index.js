@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes';
 import { AuthProvider } from './contexts/AuthContext'
+import 'leaflet/dist/leaflet.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   /*  O React.StrictMode é necessário para ativar verificações adicionais e avisos durante o desenvolvimento, ajudando a identificar problemas potenciais no código e garantindo que a aplicação siga as melhores práticas do React. 
