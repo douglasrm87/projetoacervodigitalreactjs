@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import "./TabelaUnidade.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function TabelaUnidades({ estado, data }) {
   const [openIndex, setOpenIndex] = useState(null);
+  const navigate = useNavigate();
 
   // ✅ Agrupar por instituição
   const groupedData = data.reduce((acc, item) => {
@@ -56,11 +58,17 @@ export default function TabelaUnidades({ estado, data }) {
 
                   <tbody>
                     {groupedData[instituicao].map(item => (
-                      <tr key={item.id}>
-                        <td>{item.municipio}</td>
-                        <td>{item.nome_nucleo_extensao}</td>
-                        <td>{item.publico_impactado}</td>
-                      </tr>
+<tr
+  key={item.id}
+  className="clickable-row"
+  onClick={() =>
+    navigate(`/detalhe/${item.id}`, { state: item })
+  }
+>
+  <td>{item.municipio}</td>
+  <td>{item.nome_nucleo_extensao}</td>
+  <td>{item.publico_impactado}</td>
+</tr>
                     ))}
                   </tbody>
                 </table>

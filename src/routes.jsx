@@ -24,6 +24,7 @@ import ConsultaUnidade from './unidadesfaculdade/ConsultaUnidade';
 import Dashboard from './pages/dashboard/Dashboard';
 import Oficina from './pages/Oficina';
 import BibliotecaNucleos from './pages/bibliotecanucleos/Dashboard';
+import DetalheNucleoExtensao from "./pages/bibliotecanucleos/DetalheNucleoExtensao";
 
 // Definição das rotas da aplicação utilizando createBrowserRouter.
 // A rota '/login' renderiza o componente Login, que é a página de login da aplicação.
@@ -74,6 +75,8 @@ export const router = createBrowserRouter([
       { path: "/bibliotecanucleos", element: <BibliotecaNucleos/>},
 
       { path: "/oficina/", element: <Oficina />},
+
+      { path: "/detalhe/:id", element: <DetalheNucleoExtensao /> },
 
     ]
   }

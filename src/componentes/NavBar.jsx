@@ -46,12 +46,15 @@ export default function Navbar() {
           <FaSignInAlt /> <span>Entrar</span>
         </NavLink>
 
-        <NavLink onClick={handleClick} to="/submit">
-          <FaUpload /> <span>Submeter</span>
-        </NavLink>
+
 
         <NavLink onClick={handleClick} to="/certificate">
           <FaCertificate /> <span>Certificado</span>
+        </NavLink>
+        {/* 
+
+        <NavLink onClick={handleClick} to="/submit">
+          <FaUpload /> <span>Submeter</span>
         </NavLink>
 
         <NavLink onClick={handleClick} to="/admin/estado">
@@ -64,16 +67,17 @@ export default function Navbar() {
 
         <NavLink onClick={handleClick} to="/mapabrasilbd">
           <FaMap /> <span>Mapa BD</span>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink onClick={handleClick} to="/bibliotecanucleos">
           <FaBook /> <span>Núcleos</span>
         </NavLink>
 
+{/* 
         <NavLink onClick={handleClick} to="/review">
           <FaCheck /> <span>Revisão</span>
         </NavLink>
-
+*/}
         <NavLink onClick={handleClick} to="/oficina">
           <FaTools /> <span>Oficina</span>
         </NavLink>

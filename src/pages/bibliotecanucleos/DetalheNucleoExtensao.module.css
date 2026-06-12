@@ -1,0 +1,86 @@
+.detalhe-container {
+  padding: 20px;
+}
+
+/* TABELA */
+.table-rounded {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.table-rounded td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-rounded tr:last-child td {
+  border-bottom: none;
+}
+
+.table-rounded td:first-child {
+  font-weight: bold;
+  background: #f8fafc;
+  width: 40%;
+}
+
+/* BOTÕES */
+.imagens {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.imagens button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+.imagens button:hover {
+  background: #334155;
+}
+
+/* PREVIEW */
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  .table-rounded td {
+    display: block;
+    width: 100%;
+  }
+
+  .table-rounded tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 1px solid #ddd;
+  }
+  .preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  max-width: 100%;   /* ✅ não estoura no celular */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+}
