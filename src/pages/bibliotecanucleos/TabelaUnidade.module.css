@@ -65,38 +65,127 @@
 
 /* RESPONSIVO */
 @media (max-width: 768px) {
-  .accordion-content table,
-  .accordion-content thead,
-  .accordion-content tbody,
-  .accordion-content th,
-  .accordion-content td,
+
+  /* ✅ esconde o header tradicional */
+  .accordion-content thead {
+    display: none;
+  }
+
+  /* ✅ mantém tabela como container */
+  .accordion-content table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* ✅ cada linha vira um card */
   .accordion-content tr {
     display: block;
-    width: 100%;
+    margin-bottom: 12px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
 
-  .accordion-content tr {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-
+  /* ✅ células empilhadas */
   .accordion-content td {
+    display: block;
+    width: 100%;
     text-align: left;
-    padding: 8px;
+    padding: 6px 4px;
+    font-size: 14px;
   }
 
+  /* ✅ label antes do valor */
   .accordion-content td::before {
     font-weight: bold;
     display: block;
+    color: #334155;
+    margin-bottom: 2px;
   }
 
   .accordion-content td:nth-child(1)::before {
     content: "Município";
   }
+
   .accordion-content td:nth-child(2)::before {
     content: "Núcleo";
   }
+
   .accordion-content td:nth-child(3)::before {
     content: "Público";
+  }
+}
+
+/* CELULAR PEQUENO */
+@media (max-width: 600px) {
+
+  /* Esconde cabeçalho da tabela */
+  .accordion-content thead {
+    display: none;
+  }
+
+  /* Mantém tabela base */
+  .accordion-content table {
+    width: 100%;
+  }
+
+  /* Cada linha vira um card compacto */
+  .accordion-content tr {
+    display: block;
+    margin-bottom: 10px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Células mais organizadas */
+  .accordion-content td {
+    display: flex;
+    justify-content: space-between; /* ✅ label esquerda, valor direita */
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13px;
+    border: none;
+  }
+
+  /* Label (antes do valor) */
+  .accordion-content td::before {
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .accordion-content td:nth-child(1)::before {
+    content: "Município";
+  }
+
+
+  /* Permite quebra no campo Núcleo */
+  .accordion-content td:nth-child(2) {
+    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
+    align-items: flex-start;
+  }
+
+  .accordion-content td:nth-child(2)::before {
+    margin-bottom: 2px;
+  }
+
+  /* força quebra de texto longo */
+  .accordion-content td:nth-child(2) {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+
+  .accordion-content td:nth-child(3)::before {
+    content: "Público";
+  }
+
+  /* Dá destaque ao número */
+  .accordion-content td:last-child {
+    font-weight: bold;
+    color: #0ea5e9;
   }
 }
