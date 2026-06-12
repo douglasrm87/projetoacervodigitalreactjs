@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { supabase } from '../../infra/supabase/supabaseClient';
 
 import "./DetalheNucleoExtensao.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function DetalheNucleoExtensao() {
-  const { state } = useLocation();
+  //const { state } = useLocation();
   const { id } = useParams();
   const navigate = useNavigate();
 
