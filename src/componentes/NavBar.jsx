@@ -4,13 +4,8 @@ import { NavLink } from "react-router-dom";
 import {
   FaHome,
   FaSignInAlt,
-  FaUpload,
   FaCertificate,
-  FaDatabase,
-  FaUniversity,
-  FaMap,
   FaBook,
-  FaCheck,
   FaTools
 } from "react-icons/fa";
 
@@ -45,39 +40,12 @@ export default function Navbar() {
         <NavLink onClick={handleClick} to="/login">
           <FaSignInAlt /> <span>Entrar</span>
         </NavLink>
-
-
-
         <NavLink onClick={handleClick} to="/certificate">
           <FaCertificate /> <span>Certificado</span>
         </NavLink>
-        {/* 
-
-        <NavLink onClick={handleClick} to="/submit">
-          <FaUpload /> <span>Submeter</span>
-        </NavLink>
-
-        <NavLink onClick={handleClick} to="/admin/estado">
-          <FaDatabase /> <span>Dados sistema</span>
-        </NavLink>
-
-        <NavLink onClick={handleClick} to="/unidadesfaculdade">
-          <FaUniversity /> <span>Unidades Estácio</span>
-        </NavLink>
-
-        <NavLink onClick={handleClick} to="/mapabrasilbd">
-          <FaMap /> <span>Mapa BD</span>
-        </NavLink> */}
-
         <NavLink onClick={handleClick} to="/bibliotecanucleos">
           <FaBook /> <span>Núcleos</span>
         </NavLink>
-
-{/* 
-        <NavLink onClick={handleClick} to="/review">
-          <FaCheck /> <span>Revisão</span>
-        </NavLink>
-*/}
         <NavLink onClick={handleClick} to="/oficina">
           <FaTools /> <span>Oficina</span>
         </NavLink>
