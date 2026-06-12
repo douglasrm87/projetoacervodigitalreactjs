@@ -28,6 +28,7 @@ const estados = [
   { sigla: "RJ", lat: -22.90, lng: -43.20 },
   { sigla: "RN", lat: -5.81, lng: -36.59 },
   { sigla: "RO", lat: -10.83, lng: -63.34 },
+  { sigla: "RO", lat: -10.83, lng: -63.34 },
   { sigla: "RR", lat: 1.99, lng: -61.33 },
   { sigla: "RS", lat: -30.01, lng: -51.22 },
   { sigla: "SC", lat: -27.33, lng: -49.44 },
@@ -59,13 +60,16 @@ export default function MapBrasil({ onHover, onClickState }) {
         (acc, cur) => acc + (parseInt(cur.publico_impactado) || 0),
         0
       );
+      //console.log ("Quantidade de Ies: " + totalIes);
+      //console.log ("Quantidade de Núcleos: " + totalNucleos);
+      //console.log ("Quantidade de Público Impactado: " + totalPublico);
 
       onHover({
         estado: sigla,
         regional,
-        totalIes,
-        totalNucleos,
-        totalPublico
+        ies: totalIes,
+        nucleos: totalNucleos,
+        publico: totalPublico
       });
 
     } catch (e) {
@@ -78,7 +82,11 @@ export default function MapBrasil({ onHover, onClickState }) {
     const { data } = await supabase
       .from('Lancamento_Nucleo_Extensao')
       .select('*')
-      .eq('estado', sigla);
+      .eq('estado', sigla)
+      .order('instituicao_ensino', { ascending: false })
+      .order('municipio')
+      .order('nome_nucleo_extensao');
+
 
     onClickState(sigla, data || []);
   };

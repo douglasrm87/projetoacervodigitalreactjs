@@ -29,7 +29,7 @@ export default function Dashboard() {
             }}
           />
         </div>
-
+        {/* painel ao lado do mapa */}
         <div className="details-section">
           <InfoPainel data={hoverData} />
         </div>

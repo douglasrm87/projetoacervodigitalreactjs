@@ -1,0 +1,102 @@
+.table-container {
+  margin-top: 20px;
+}
+
+/* CARD DA INSTITUIÇÃO */
+.accordion-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 12px;
+}
+
+/* HEADER */
+.accordion-header {
+  background: #1e293b;
+  color: white;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-header strong {
+  font-size: 15px;
+}
+
+.badge {
+  margin-left: 10px;
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* CONTEÚDO */
+.accordion-content {
+  background: #fff;
+  padding: 10px;
+}
+
+/* TABELA */
+.accordion-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.accordion-content th {
+  background: #f1f5f9;
+  padding: 10px;
+  text-align: center;
+}
+
+.accordion-content td {
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* HOVER */
+.accordion-content tr:hover {
+  background: #f8fafc;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .accordion-content table,
+  .accordion-content thead,
+  .accordion-content tbody,
+  .accordion-content th,
+  .accordion-content td,
+  .accordion-content tr {
+    display: block;
+    width: 100%;
+  }
+
+  .accordion-content tr {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .accordion-content td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  .accordion-content td::before {
+    font-weight: bold;
+    display: block;
+  }
+
+  .accordion-content td:nth-child(1)::before {
+    content: "Município";
+  }
+  .accordion-content td:nth-child(2)::before {
+    content: "Núcleo";
+  }
+  .accordion-content td:nth-child(3)::before {
+    content: "Público";
+  }
+}

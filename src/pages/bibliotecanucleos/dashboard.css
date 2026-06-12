@@ -171,3 +171,40 @@ td, th {
     width: 100%;
   }
 }
+
+.metrics-table {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.metrics-table table {
+  width: 100%;
+  border-collapse: separate; /* necessário para border-radius funcionar */
+  border-spacing: 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden; /* garante o arredondamento visual */
+}
+
+.metrics-table th {
+  background-color: #3907ee;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.metrics-table td {
+  padding: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.metrics-table th:not(:last-child),
+.metrics-table td:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.metrics-table tr:not(:last-child) td {
+  border-bottom: 1px solid #ddd;
+}
