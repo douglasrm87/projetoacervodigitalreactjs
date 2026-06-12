@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import "./TabelaUnidade.module.css";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function TabelaUnidades({ estado, data }) {
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
+  const tableRef = useRef(null);
 
   // ✅ Agrupar por instituição
   const groupedData = data.reduce((acc, item) => {
@@ -19,8 +21,18 @@ export default function TabelaUnidades({ estado, data }) {
 
   const instituicoes = Object.keys(groupedData);
 
+  useEffect(() => {
+    if (openIndex !== null && tableRef.current) {
+      tableRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, [openIndex]);
+
+
   return (
-    <div className="table-container">
+    <div className="table-container" >
       <h3>Unidades - {estado}</h3>
 
       {instituicoes.map((instituicao, index) => {
@@ -46,7 +58,7 @@ export default function TabelaUnidades({ estado, data }) {
 
             {/* ✅ TABELA COLAPSÁVEL */}
             {isOpen && (
-              <div className="accordion-content">
+              <div className="accordion-content" ref={tableRef}>
                 <table>
                   <thead>
                     <tr>
@@ -58,17 +70,17 @@ export default function TabelaUnidades({ estado, data }) {
 
                   <tbody>
                     {groupedData[instituicao].map(item => (
-<tr
-  key={item.id}
-  className="clickable-row"
-  onClick={() =>
-    navigate(`/detalhe/${item.id}`, { state: item })
-  }
->
-  <td>{item.municipio}</td>
-  <td>{item.nome_nucleo_extensao}</td>
-  <td>{item.publico_impactado}</td>
-</tr>
+                        <tr
+                          key={item.id}
+                          className="clickable-row"
+                          onClick={() =>
+                            navigate(`/detalhe/${item.id}`, { state: item })
+                          }
+                          >
+                            <td>{item.municipio}</td>
+                            <td>{item.nome_nucleo_extensao}</td>
+                            <td>{item.publico_impactado}</td>
+                        </tr>
                     ))}
                   </tbody>
                 </table>
