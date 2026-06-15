@@ -82,9 +82,7 @@ export default function DetalheNucleoExtensao() {
       {/* ✅ PREVIEW IMAGEM */}
       {imagemSelecionada && (
         <div className="preview">
-          {imagemSelecionada && (
-            <img src={imagemSelecionada} alt="preview" style={{ maxWidth: "100%" }} />
-          )}
+          <img src={imagemSelecionada} alt="preview" style={{ maxWidth: "100%" }} />
         </div>
       )}
       <button className="btn-voltar" onClick={() => navigate(-1)}>
