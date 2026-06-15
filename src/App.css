@@ -47,15 +47,17 @@ Sem a classe .container, o conteúdo da página ficaria desorganizado e sem esti
 .container{
   max-width:900px;
   margin:2rem auto;
+
   padding:2rem;
+  padding-left: calc(32px + env(safe-area-inset-left));
+  padding-right: calc(32px + env(safe-area-inset-right));
+
   background:#fff;
   border-radius:12px;
   box-shadow:0 10px 30px rgba(0,0,0,.08);
 
-  /* Ajuste para responsividade: 
-   Ajuste para telas menores que o max-width */
-  width: 90%; 
-  box-sizing: border-box; /* Garante que o padding não aumente o tamanho final */
+  width: 92%; /* levemente menor para criar mais margem lateral */
+  box-sizing: border-box;
 }
 
 /* GRID */

@@ -1,5 +1,7 @@
 .dashboard {
   padding: 20px;
+  padding-left: calc(32px + env(safe-area-inset-left));
+  padding-right: calc(32px + env(safe-area-inset-right));
   background: #f4f6f9;
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
@@ -14,6 +16,7 @@
   color: #2c3e50;
 }
 
+/* KPI CARDS */
 .kpi-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -43,6 +46,7 @@
   color: #777;
 }
 
+/* CHARTS */
 .charts {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -63,4 +67,72 @@
 .chart-card h3 {
   margin-bottom: 10px;
   color: #333;
+}
+
+/* ========================= */
+/* ✅ MOBILE / IPHONE AJUSTES */
+/* ========================= */
+
+@media (max-width: 768px) {
+  
+
+  .dashboard {
+    padding-left: calc(36px + env(safe-area-inset-left));
+    padding-right: calc(36px + env(safe-area-inset-right));
+  }
+
+
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .kpi-container {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-card {
+    padding: 18px;
+  }
+
+  .kpi-card h2 {
+    font-size: 26px;
+  }
+
+  .charts {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card {
+    padding: 18px;
+  }
+
+  .chart-card.full {
+    grid-column: span 1;
+  }
+}
+
+/* ========================= */
+/* ✅ TELAS MUITO PEQUENAS */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+
+  .dashboard {
+    padding-left: calc(40px + env(safe-area-inset-left));
+    padding-right: calc(40px + env(safe-area-inset-right));
+  }
+
+
+  .kpi-card {
+    padding: 16px;
+  }
+
+  .chart-card {
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
 }
