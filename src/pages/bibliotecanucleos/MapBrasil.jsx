@@ -29,8 +29,8 @@ const estados = [
   { sigla: "RO", lat: -10.83, lng: -63.34 },
   { sigla: "RO", lat: -10.83, lng: -63.34 },
   { sigla: "RR", lat: 1.99, lng: -61.33 },
-  { sigla: "RS", lat: -30.01, lng: -51.22 },
-  { sigla: "SC", lat: -27.33, lng: -49.44 },
+  { sigla: "RS", lat: -30.01, lng: -53.22 },
+  { sigla: "SC", lat: -27.33, lng: -50.14 },
   { sigla: "SE", lat: -10.90, lng: -37.07 },
   { sigla: "SP", lat: -23.33, lng: -48 },
   { sigla: "TO", lat: -11.25, lng: -48.25 }

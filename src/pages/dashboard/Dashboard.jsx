@@ -82,17 +82,17 @@ const Dashboard = () => {
 
             <div className="kpi-card">
               <p>Carga Horária Total</p>
-              <h2>{totalCarga}</h2>
+              <h2 style={{ marginLeft: "15px" }}>{totalCarga}</h2>
             </div>
 
             <div className="kpi-card">
               <p>Cursos</p>
-              <h2>{porCurso.length}</h2>
+              <h2 style={{ marginLeft: "15px" }}>{porCurso.length}</h2>
             </div>
 
             <div className="kpi-card">
               <p>Tipos</p>
-              <h2>{porTipo.length}</h2>
+              <h2 style={{ marginLeft: "15px" }}>{porTipo.length}</h2>
               
             </div>
           </div>
