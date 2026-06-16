@@ -7,7 +7,7 @@ import { Tooltip } from 'react-leaflet';
 // ✅ POSIÇÃO REAL DOS ESTADOS (CENTRO APROXIMADO)
 const estados = [
   { sigla: "AC", lat: -8.77, lng: -70.55 },
-  { sigla: "AL", lat: -9.71, lng: -35.73 },
+  { sigla: "AL", lat: -9.71, lng: -36.55 },
   { sigla: "AM", lat: -3.07, lng: -61.66 },
   { sigla: "AP", lat: 1.41, lng: -51.77 },
   { sigla: "BA", lat: -12.96, lng: -41.51 },
@@ -20,9 +20,9 @@ const estados = [
   { sigla: "MS", lat: -19.55, lng: -54.54 },
   { sigla: "MG", lat: -18.10, lng: -44.38 },
   { sigla: "PA", lat: -5.35, lng: -49.33 },
-  { sigla: "PB", lat: -7.06, lng: -35.55 },
+  { sigla: "PB", lat: -7.06, lng: -35.70 },
   { sigla: "PR", lat: -24.89, lng: -51.55 },
-  { sigla: "PE", lat: -8.28, lng: -35.07 },
+  { sigla: "PE", lat: -8.28, lng: -36.07 },
   { sigla: "PI", lat: -8.28, lng: -43.68 },
   { sigla: "RJ", lat: -22.54, lng: -43.12 },
   { sigla: "RN", lat: -5.81, lng: -36.59 },
