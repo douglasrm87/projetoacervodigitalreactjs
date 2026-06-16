@@ -23,7 +23,7 @@ function App() {
       {/* Em resumo, o Outlet é essencial para que as rotas filhas sejam renderizadas corretamente dentro do layout do App, garantindo que o conteúdo das páginas seja exibido conforme esperado. */}
       <Outlet />
       {/* Exemplo de exibição dos dados obtidos do Supabase */}
-      <Dashboard/> 
+      
       
     </>
   );
