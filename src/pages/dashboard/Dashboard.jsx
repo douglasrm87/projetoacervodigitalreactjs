@@ -70,29 +70,30 @@ const Dashboard = () => {
 
       <div className="container">
           <div className="header">
-            <h1>Dashboard Executivo</h1>
+            <h1>Dashboard Executivo Trial</h1>
           </div>
 
           {/* KPIs */}
           <div className="kpi-container">
             <div className="kpi-card">
-              <h2>{totalRegistros}</h2>
               <p>Lançamentos</p>
+              <h2 style={{ marginLeft: "15px" }}>{totalRegistros}</h2>
             </div>
 
             <div className="kpi-card">
-              <h2>{totalCarga}</h2>
               <p>Carga Horária Total</p>
+              <h2>{totalCarga}</h2>
             </div>
 
             <div className="kpi-card">
-              <h2>{porCurso.length}</h2>
               <p>Cursos</p>
+              <h2>{porCurso.length}</h2>
             </div>
 
             <div className="kpi-card">
-              <h2>{porTipo.length}</h2>
               <p>Tipos</p>
+              <h2>{porTipo.length}</h2>
+              
             </div>
           </div>
 

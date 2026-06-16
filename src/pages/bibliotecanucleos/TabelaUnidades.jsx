@@ -74,6 +74,7 @@ export default function TabelaUnidades({ estado, data }) {
                         <tr
                           key={item.id}
                           className="clickable-row"
+                          title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
                           onClick={() =>
                             navigate(`/detalhe/${item.id}`, { state: item })
                           }
