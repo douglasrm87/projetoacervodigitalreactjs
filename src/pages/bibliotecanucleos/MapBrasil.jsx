@@ -25,7 +25,7 @@ const estados = [
   { sigla: "PR", lat: -24.89, lng: -51.55 },
   { sigla: "PE", lat: -8.28, lng: -35.07 },
   { sigla: "PI", lat: -8.28, lng: -43.68 },
-  { sigla: "RJ", lat: -22.90, lng: -43.20 },
+  { sigla: "RJ", lat: -22.54, lng: -43.12 },
   { sigla: "RN", lat: -5.81, lng: -36.59 },
   { sigla: "RO", lat: -10.83, lng: -63.34 },
   { sigla: "RO", lat: -10.83, lng: -63.34 },
@@ -35,6 +35,14 @@ const estados = [
   { sigla: "SE", lat: -10.90, lng: -37.07 },
   { sigla: "SP", lat: -23.55, lng: -46.63 },
   { sigla: "TO", lat: -10.25, lng: -48.25 }
+];
+
+const cidades = [
+  { sigla: "CURITIBA", lat: -25.4439, lng: -49.2816 },
+  { sigla: "FLORIANOPOLIS", lat: -27.5935, lng: -48.5585 },
+  { sigla: "FORTALEZA", lat: -3.7328, lng: -38.5269 },
+  { sigla: "RIO DE JANEIRO", lat: -22.9083, lng:  -43.1964 }
+ 
 ];
 
 export default function MapBrasil({ onHover, onClickState }) {
@@ -91,6 +99,20 @@ export default function MapBrasil({ onHover, onClickState }) {
     onClickState(sigla, data || []);
   };
 
+   // ✅ CLICK
+  const handleClickCidade = async (sigla) => {
+    const { data } = await supabase
+      .from('Lancamento_Nucleo_Extensao')
+      .select('*')
+      .eq('municipio', sigla)
+      .order('instituicao_ensino', { ascending: false })
+      .order('municipio')
+      .order('nome_nucleo_extensao');
+
+
+    onClickState(sigla, data || []);
+  };
+
   return (
     <MapContainer center={[-14.2, -52]} zoom={4} style={{ height: '500px' }}>
 
@@ -119,6 +141,33 @@ export default function MapBrasil({ onHover, onClickState }) {
                 permanent={false} // só aparece no hover
             >
             <strong>{uf.sigla}</strong>
+            </Tooltip>
+        </CircleMarker>
+        ))}
+
+        {cidades.map((cidade, i) => (
+        <CircleMarker
+                key={i}
+                center={[cidade.lat, cidade.lng]}
+                radius={4}
+                pathOptions={{
+                fillColor: '#e7146c',
+                color: '#ffffff',
+                weight: 1,
+                fillOpacity: 1
+            }}
+            eventHandlers={{
+                mouseover: () => handleHover(cidade.sigla),
+                click: () => handleClickCidade(cidade.sigla)
+            }}
+        >
+            <Tooltip
+                direction="top"
+                offset={[0, -10]}
+                opacity={1}
+                permanent={false} // só aparece no hover
+            >
+            <strong>{cidade.sigla}</strong>
             </Tooltip>
         </CircleMarker>
         ))}

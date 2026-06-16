@@ -74,7 +74,7 @@ export default function DetalheNucleoExtensao() {
           .filter(Boolean)
           .map((img, i) => (
             <button key={i} onClick={() => setImagemSelecionada(img)}>
-              Ver imagem {i + 1}
+              Evidência {i + 1}
             </button>
           ))}
       </div>
@@ -85,9 +85,23 @@ export default function DetalheNucleoExtensao() {
           <img src={imagemSelecionada} alt="preview" style={{ maxWidth: "100%" }} />
         </div>
       )}
+      
+      {/* ✅ Todas as imagens */}
+      
+      <div  >
+          <p></p>
+          <h3>Todas as Evidências</h3>
+          <div style={{    display: "flex",  gap: "10px",  justifyContent: "space-between"   }} >
+              <img src={detalhes.evidencia01_foto} alt="preview" style={{ maxWidth: "32%" }} />
+              <img src={detalhes.evidencia02_foto} alt="preview" style={{ maxWidth: "32%" }} />
+              <img src={detalhes.evidencia03_foto} alt="preview" style={{ maxWidth: "32%" }} />
+          </div>
+          <p ></p>
+      </div>
+
       <button className="btn-voltar" onClick={() => navigate(-1)}>
             ← Voltar
-    </button>
+      </button>
     </div>
   );
 }

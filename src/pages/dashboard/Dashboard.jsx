@@ -6,8 +6,6 @@ import {
 } from "recharts";
 import { supabase } from '../../infra/supabase/supabaseClient';
 
-import "./Dashboard.module.css";
-
 const COLORS = ["#6C63FF", "#FF9800", "#4CAF50", "#2196F3", "#E91E63"];
 
 const Dashboard = () => {
@@ -69,78 +67,82 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="header">
-        <h1>Dashboard Executivo</h1>
-      </div>
 
-      {/* KPIs */}
-      <div className="kpi-container">
-        <div className="kpi-card">
-          <h2>{totalRegistros}</h2>
-          <p>Lançamentos</p>
-        </div>
+      <div className="container">
+          <div className="header">
+            <h1>Dashboard Executivo</h1>
+          </div>
 
-        <div className="kpi-card">
-          <h2>{totalCarga}</h2>
-          <p>Carga Horária Total</p>
-        </div>
+          {/* KPIs */}
+          <div className="kpi-container">
+            <div className="kpi-card">
+              <h2>{totalRegistros}</h2>
+              <p>Lançamentos</p>
+            </div>
 
-        <div className="kpi-card">
-          <h2>{porCurso.length}</h2>
-          <p>Cursos</p>
-        </div>
+            <div className="kpi-card">
+              <h2>{totalCarga}</h2>
+              <p>Carga Horária Total</p>
+            </div>
 
-        <div className="kpi-card">
-          <h2>{porTipo.length}</h2>
-          <p>Tipos</p>
-        </div>
-      </div>
+            <div className="kpi-card">
+              <h2>{porCurso.length}</h2>
+              <p>Cursos</p>
+            </div>
 
-      {/* GRÁFICOS */}
-      <div className="charts">
-        {/* Pizza */}
-        <div className="chart-card">
-          <h3>Distribuição por Tipo</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie data={porTipo} dataKey="value" outerRadius={100} label>
-                {porTipo.map((entry, index) => (
-                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
+            <div className="kpi-card">
+              <h2>{porTipo.length}</h2>
+              <p>Tipos</p>
+            </div>
+          </div>
 
-        {/* Barra */}
-        <div className="chart-card">
-          <h3>Lançamentos por Curso</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={porCurso}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Bar dataKey="total" fill="#6C63FF" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+          {/* GRÁFICOS */}
+          <div className="charts">
+            {/* Pizza */}
+            <div className="chart-card">
+              <h3>Distribuição por Tipo</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie data={porTipo} dataKey="value" outerRadius={100} label>
+                    {porTipo.map((entry, index) => (
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
 
-        {/* Linha */}
-        <div className="chart-card full">
-          <h3>Evolução Mensal</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={porMes}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="mes" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="total" stroke="#FF9800" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+            {/* Barra */}
+            <div className="chart-card">
+              <h3>Lançamentos por Curso</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={porCurso}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="total" fill="#6C63FF" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Linha */}
+            <div className="chart-card full">
+              <h3>Evolução Mensal</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={porMes}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="mes" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="total" stroke="#FF9800" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+      </div>  
     </div>
   );
 };
