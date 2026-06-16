@@ -64,6 +64,7 @@ export default function TabelaUnidades({ estado, data }) {
                     <tr>
                       <th>Município</th>
                       <th>Núcleo</th>
+                      <th>Curso</th>
                       <th>Público</th>
                     </tr>
                   </thead>
@@ -79,6 +80,7 @@ export default function TabelaUnidades({ estado, data }) {
                           >
                             <td>{item.municipio}</td>
                             <td>{item.nome_nucleo_extensao}</td>
+                            <td>{item.curso}</td>
                             <td>{item.publico_impactado}</td>
                         </tr>
                     ))}
