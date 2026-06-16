@@ -1,6 +1,19 @@
 export default function InfoPainel({ data }) {
 
-  if (!data) return <div className="info-box">Passe o mouse sobre um estado</div>;
+    if (!data)
+      return (
+        <div className="info-box">
+          Passe o mouse sobre um{" "}
+          <span style={{ color: "#002F6C", fontWeight: "bold", fontSize: "1.1em" }}>
+            Estado
+          </span>{" "}
+            ou{" "}
+          <span style={{ color: "#e7146c", fontWeight: "bold", fontSize: "1.1em" }}>
+            Cidade
+          </span>{" "}
+        </div>
+      );
+
   console.log ("Quantidade de Ies: " + data.ies);
   console.log ("Quantidade de Núcleos: " + data.nucleos);
   console.log ("Quantidade de Público Impactado: " + data.publico);
