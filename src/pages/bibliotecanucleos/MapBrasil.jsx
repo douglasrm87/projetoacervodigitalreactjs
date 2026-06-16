@@ -31,7 +31,7 @@ const estados = [
   { sigla: "RR", lat: 1.99, lng: -61.33 },
   { sigla: "RS", lat: -30.01, lng: -53.22 },
   { sigla: "SC", lat: -27.33, lng: -50.14 },
-  { sigla: "SE", lat: -10.90, lng: -37.07 },
+  { sigla: "SE", lat: -11.90, lng: -37.07 },
   { sigla: "SP", lat: -23.33, lng: -48 },
   { sigla: "TO", lat: -11.25, lng: -48.25 }
 ];
@@ -151,7 +151,19 @@ export default function MapBrasil({ onHover, onClickState }) {
       .order('municipio')
       .order('nome_nucleo_extensao');
 
+    // Aqui é feito o envio dos dados ao programa TabelaUnidade.jsx
+    /*
+      ✔ MapBrasil recebe onClickState
+      ✔ Você está chamando onClickState(sigla, data)
+      ✔ Existe um componente pai com useState
+      ✔ TabelaUnidades recebe data via props
+      "Lifting State Up"
+        👉 Estado fica no componente pai (programa Dashboard.jsx nesta pasta)
+        👉 Filhos apenas:
 
+        enviam eventos
+        recebem dados
+    */
     onClickState(sigla, data || []);
   };
 
