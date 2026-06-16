@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import NavBar from './componentes/NavBar';
 import './App.css';
-import Dashboard from './pages/dashboard/Dashboard';
 
 
 function App() {

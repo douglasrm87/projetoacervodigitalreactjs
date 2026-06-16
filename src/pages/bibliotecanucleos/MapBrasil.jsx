@@ -10,12 +10,12 @@ const estados = [
   { sigla: "AL", lat: -9.71, lng: -35.73 },
   { sigla: "AM", lat: -3.07, lng: -61.66 },
   { sigla: "AP", lat: 1.41, lng: -51.77 },
-  { sigla: "BA", lat: -12.96, lng: -38.51 },
-  { sigla: "CE", lat: -3.71, lng: -38.54 },
-  { sigla: "DF", lat: -15.83, lng: -47.86 },
+  { sigla: "BA", lat: -12.96, lng: -41.51 },
+  { sigla: "CE", lat: -5.49, lng: -38.99 },
+  { sigla: "DF", lat: -14.83, lng: -47.86 },
   { sigla: "ES", lat: -19.19, lng: -40.34 },
-  { sigla: "GO", lat: -17.50, lng: -52.00 },
-  { sigla: "MA", lat: -2.55, lng: -44.30 },
+  { sigla: "GO", lat: -16.50, lng: -51.00 },
+  { sigla: "MA", lat: -3.55, lng: -44.30 },
   { sigla: "MT", lat: -12.64, lng: -55.42 },
   { sigla: "MS", lat: -19.55, lng: -54.54 },
   { sigla: "MG", lat: -18.10, lng: -44.38 },
@@ -33,7 +33,7 @@ const estados = [
   { sigla: "SC", lat: -27.33, lng: -49.44 },
   { sigla: "SE", lat: -10.90, lng: -37.07 },
   { sigla: "SP", lat: -23.33, lng: -48 },
-  { sigla: "TO", lat: -10.25, lng: -48.25 }
+  { sigla: "TO", lat: -11.25, lng: -48.25 }
 ];
 
 const cidades = [
