@@ -2,7 +2,7 @@ import React, { useState , useRef } from 'react';
 import MapBrasil from './MapBrasil';
 import InfoPainel from './InfoPainel';
 import TabelaUnidades from './TabelaUnidades';
-import './dashboard.css';
+import './dashboard.module.css';
 
 export default function Dashboard() {
 

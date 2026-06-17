@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from '../../infra/supabase/supabaseClient';
 
-import "./DetalheNucleoExtensao.module.css";
+//import "./DetalheNucleoExtensao.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function DetalheNucleoExtensao() {
