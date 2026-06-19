@@ -1,3 +1,4 @@
+
 .table-container {
   margin-top: 20px;
 }
@@ -29,6 +30,13 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  width: 50%;
+}
+/* CONTEÚDO */
+.accordion-content {
+  background: #4b0df7;
+  padding: 14px 16px;
+  width: 50%;
 }
 
 .accordion-header strong {
@@ -44,11 +52,7 @@
   font-size: 12px;
 }
 
-/* CONTEÚDO */
-.accordion-content {
-  background: #4b0df7;
-  padding: 10px;
-}
+
 
 /* TABELA */
 .accordion-content table {
@@ -115,15 +119,21 @@
   }
 
   .accordion-content td:nth-child(1)::before {
-    content: "Município";
+    content: "Núcleo";
   }
 
   .accordion-content td:nth-child(2)::before {
-    content: "Núcleo";
+    content: "Curso";
   }
 
   .accordion-content td:nth-child(3)::before {
     content: "Público";
+  }
+   .accordion-header {
+    width: 100%;
+  }
+  .accordion-content {
+    width: 100%;
   }
 }
 
@@ -136,6 +146,12 @@
   }
 
   /* Mantém tabela base */
+  .accordion-header {
+    width: 100%;
+  }
+  .accordion-content {
+    width: 100%;
+  }
   .accordion-content table {
     width: 100%;
   }
@@ -166,17 +182,20 @@
     color: #475569;
   }
 
+  /* Permite quebra no campo Curso */
+  .accordion-content td:nth-child(1) {
+    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
+    align-items: flex-start;
+  }
   .accordion-content td:nth-child(1)::before {
-    content: "Município";
+    margin-bottom: 2px;
   }
 
-
-  /* Permite quebra no campo Núcleo */
+  /* Permite quebra no campo Curso */
   .accordion-content td:nth-child(2) {
     flex-direction: column; /* ✅ joga label em cima e texto abaixo */
     align-items: flex-start;
   }
-
   .accordion-content td:nth-child(2)::before {
     margin-bottom: 2px;
   }
@@ -188,14 +207,13 @@
     white-space: normal;
   }
 
-
+  /* Permite quebra no campo Curso */
+  .accordion-content td:nth-child(3) {
+    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
+    align-items: flex-start;
+  }
   .accordion-content td:nth-child(3)::before {
-    content: "Público";
+    margin-bottom: 2px;
   }
-
-  /* Dá destaque ao número */
-  .accordion-content td:last-child {
-    font-weight: bold;
-    color: #0ea5e9;
-  }
+ 
 }
