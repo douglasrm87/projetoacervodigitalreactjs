@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from '../../infra/supabase/supabaseClient';
 
-//import "./DetalheNucleoExtensao.module.css";
+import "./DetalheNucleoExtensao.css";
 import { useNavigate } from "react-router-dom";
 
 export default function DetalheNucleoExtensao() {
@@ -73,7 +73,7 @@ export default function DetalheNucleoExtensao() {
         {[detalhes.evidencia01_foto, detalhes.evidencia02_foto, detalhes.evidencia03_foto]
           .filter(Boolean)
           .map((img, i) => (
-            <button key={i} onClick={() => setImagemSelecionada(img)}>
+            <button  key={i} onClick={() => setImagemSelecionada(img)}>
               Evidência {i + 1}
             </button>
           ))}

@@ -14,14 +14,14 @@ export default function InfoPainel({ data }) {
         </div>
       );
 
-  console.log ("Quantidade de Ies: " + data.ies);
-  console.log ("Quantidade de Núcleos: " + data.nucleos);
-  console.log ("Quantidade de Público Impactado: " + data.publico);
+//  console.log ("Quantidade de Ies: " + data.ies);
+  //console.log ("Quantidade de Núcleos: " + data.nucleos);
+  //console.log ("Quantidade de Público Impactado: " + data.publico);
   return (
     <div className="info-box">
 
-      <h2>Estado: {data.estado}</h2>
-      <p>Regional: {data.regional}</p>
+      <h2>Regional: {data.regional}</h2>
+      <p></p>
 
       <div className="metrics-table">
         <table>

@@ -6,11 +6,34 @@ import { Tooltip } from 'react-leaflet';
 
 // ✅ POSIÇÃO REAL DOS ESTADOS (CENTRO APROXIMADO)
 const estados = [
-  { sigla: "WYDEN", lat: -15.96, lng: -45.51 },
-  { sigla: "NORDESTE", lat: -8.28, lng: -40.07 },
-  { sigla: "NORTE-SUL", lat: -8.28, lng: -53.68 },
-  { sigla: "SUDESTE", lat: -23.33, lng: -50 }
-  
+  { sigla: "AC", lat: -8.77, lng: -70.55 },
+  { sigla: "AL", lat: -9.71, lng: -36.55 },
+  { sigla: "AM", lat: -3.07, lng: -61.66 },
+  { sigla: "AP", lat: 1.41, lng: -51.77 },
+  { sigla: "BA", lat: -12.96, lng: -41.51 },
+  { sigla: "CE", lat: -5.49, lng: -38.99 },
+  { sigla: "DF", lat: -14.83, lng: -47.86 },
+  { sigla: "ES", lat: -19.19, lng: -40.34 },
+  { sigla: "GO", lat: -16.50, lng: -51.00 },
+  { sigla: "MA", lat: -3.55, lng: -44.30 },
+  { sigla: "MT", lat: -12.64, lng: -55.42 },
+  { sigla: "MS", lat: -19.55, lng: -54.54 },
+  { sigla: "MG", lat: -18.10, lng: -44.38 },
+  { sigla: "PA", lat: -5.35, lng: -49.33 },
+  { sigla: "PB", lat: -7.06, lng: -35.70 },
+  { sigla: "PR", lat: -24.89, lng: -51.55 },
+  { sigla: "PE", lat: -8.28, lng: -36.07 },
+  { sigla: "PI", lat: -8.28, lng: -43.68 },
+  { sigla: "RJ", lat: -22.54, lng: -43.12 },
+  { sigla: "RN", lat: -5.81, lng: -36.59 },
+  { sigla: "RO", lat: -10.83, lng: -63.34 },
+  { sigla: "RO", lat: -10.83, lng: -63.34 },
+  { sigla: "RR", lat: 1.99, lng: -61.33 },
+  { sigla: "RS", lat: -30.01, lng: -53.22 },
+  { sigla: "SC", lat: -27.33, lng: -50.14 },
+  { sigla: "SE", lat: -11.90, lng: -37.07 },
+  { sigla: "SP", lat: -23.33, lng: -48 },
+  { sigla: "TO", lat: -11.25, lng: -48.25 }
 ];
 
 const cidades = [
@@ -71,15 +94,15 @@ export default function MapBrasil({ onHover, onClickState }) {
     try {
       const { data } = await supabase
         .from('Lancamento_Nucleo_Extensao')
-        .select('municipio, instituicao_ensino, nome_nucleo_extensao, publico_impactado')
-        .eq('regional', sigla);
+        .select('regional, instituicao_ensino, nome_nucleo_extensao, publico_impactado')
+        .eq('estado', sigla);
 
       if (!data || data.length === 0) {
         onHover(null);
         return;
       }
 
-      const municipio = data[0]?.municipio || 'N/D';
+      const regional = data[0]?.regional || 'N/D';
 
       const totalIes = new Set(data.map(i => i.instituicao_ensino)).size;
       const totalNucleos = new Set(data.map(i => i.nome_nucleo_extensao)).size;
@@ -92,8 +115,8 @@ export default function MapBrasil({ onHover, onClickState }) {
       //console.log ("Quantidade de Público Impactado: " + totalPublico);
 
       onHover({
-        regional: sigla,
-        municipio,
+        estado: sigla,
+        regional,
         ies: totalIes,
         nucleos: totalNucleos,
         publico: totalPublico
@@ -109,7 +132,7 @@ export default function MapBrasil({ onHover, onClickState }) {
     const { data } = await supabase
       .from('Lancamento_Nucleo_Extensao')
       .select('*')
-      .eq('regional', sigla)
+      .eq('estado', sigla)
       .order('instituicao_ensino', { ascending: false })
       .order('municipio')
       .order('nome_nucleo_extensao');
@@ -144,28 +167,8 @@ export default function MapBrasil({ onHover, onClickState }) {
     onClickState(sigla, data || []);
   };
 
-  
-  const brasilBounds = [
-    [-33.75, -73.99], // sudoeste (RS/Acre)
-    [5.27, -34.79]    // nordeste (RR/RN)
-  ];
-
   return (
-    
-      <MapContainer
-            bounds={brasilBounds}
-            maxBounds={brasilBounds}
-            maxBoundsViscosity={1.0}
-
-            minZoom={4}
-            maxZoom={6}
-
-            zoomControl={true}
-            scrollWheelZoom={true}
-
-            style={{ height: "500px" }}
-          >
-
+    <MapContainer center={[-14.2, -52]} zoom={4} style={{ height: '500px' }}>
 
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
@@ -173,12 +176,12 @@ export default function MapBrasil({ onHover, onClickState }) {
         <CircleMarker
                 key={i}
                 center={[uf.lat, uf.lng]}
-                radius={51}
+                radius={8}
                 pathOptions={{
-                    fillColor: '#002F6C',
-                    color: '#ffffff',
-                    weight: 2,
-                    fillOpacity: 1
+                fillColor: '#002F6C',
+                color: '#ffffff',
+                weight: 2,
+                fillOpacity: 1
             }}
             eventHandlers={{
                 mouseover: () => handleHover(uf.sigla),
@@ -186,10 +189,10 @@ export default function MapBrasil({ onHover, onClickState }) {
             }}
         >
             <Tooltip
-                direction="center"
+                direction="top"
                 offset={[0, -10]}
                 opacity={1}
-                permanent
+                permanent={false} // só aparece no hover
             >
             <strong>{uf.sigla}</strong>
             </Tooltip>
@@ -200,7 +203,7 @@ export default function MapBrasil({ onHover, onClickState }) {
         <CircleMarker
                 key={i}
                 center={[cidade.lat, cidade.lng]}
-                radius={6}
+                radius={4}
                 pathOptions={{
                 fillColor: '#e7146c',
                 color: '#ffffff',

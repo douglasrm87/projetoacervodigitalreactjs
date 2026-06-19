@@ -2,6 +2,16 @@
   margin-top: 20px;
 }
 
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.clickable-row:hover {
+  background-color: #f5f7fa;
+  transform: scale(1.01);
+}
+
 /* CARD DA INSTITUIÇÃO */
 .accordion-item {
   border-radius: 12px;

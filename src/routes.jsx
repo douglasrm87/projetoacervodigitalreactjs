@@ -21,7 +21,7 @@ import SubmitWorkTela03 from './pages/cadastrarformulario/SubmitWorkTela03';
 import CertificateContainer from './pages/certificado/CertificateContainer';
 import MapaUnidadesFaculdade from './unidadesfaculdade/MapaUnidadesFaculdade';
 import ConsultaUnidade from './unidadesfaculdade/ConsultaUnidade';
-import Dashboard from './pages/dashboard/Dashboard';
+//import Dashboard from './pages/dashboard/Dashboard';
 import Oficina from './pages/Oficina';
 import BibliotecaNucleos from './pages/bibliotecanucleos/Dashboard';
 import DetalheNucleoExtensao from "./pages/bibliotecanucleos/DetalheNucleoExtensao";
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
   { path: '/projetoacervodigitalreactjs', element:  <App/> },
   {
     path: '/', element: <App/>, children: [
-      { index: true, element: <Dashboard/> },
+      { index: true, element: <BibliotecaNucleos/> },
 
       { path: 'first-access', element:  <FirstAccess/> },
       { path: 'submit', element: <SubmitWork/> },

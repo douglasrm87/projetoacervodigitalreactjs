@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import "./TabelaUnidade.module.css";
+import "./TabelaUnidade.css";
 import { useNavigate } from "react-router-dom";
 
 export default function TabelaUnidades({ estado, data }) {
@@ -75,6 +75,7 @@ export default function TabelaUnidades({ estado, data }) {
                           key={item.id}
                           className="clickable-row"
                           title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
+                          
                           onClick={() =>
                             navigate(`/detalhe/${item.id}`, { state: item })
                           }
