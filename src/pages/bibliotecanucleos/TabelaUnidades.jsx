@@ -62,7 +62,6 @@ export default function TabelaUnidades({ estado, data }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Município</th>
                       <th>Núcleo</th>
                       <th>Curso</th>
                       <th>Público</th>
@@ -75,12 +74,10 @@ export default function TabelaUnidades({ estado, data }) {
                           key={item.id}
                           className="clickable-row"
                           title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
-                          
                           onClick={() =>
                             navigate(`/detalhe/${item.id}`, { state: item })
                           }
                           >
-                            <td>{item.municipio}</td>
                             <td>{item.nome_nucleo_extensao}</td>
                             <td>{item.curso}</td>
                             <td>{item.publico_impactado}</td>

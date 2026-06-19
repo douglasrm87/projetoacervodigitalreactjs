@@ -46,7 +46,7 @@
 
 /* CONTEÚDO */
 .accordion-content {
-  background: #fff;
+  background: #4b0df7;
   padding: 10px;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .accordion-content th {
-  background: #f1f5f9;
+  background: #4b0df7;
   padding: 10px;
   text-align: center;
 }

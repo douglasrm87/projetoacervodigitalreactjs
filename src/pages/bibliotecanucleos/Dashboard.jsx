@@ -2,7 +2,7 @@ import React, { useState , useRef } from 'react';
 import MapBrasil from './MapBrasil';
 import InfoPainel from './InfoPainel';
 import TabelaUnidades from './TabelaUnidades';
-import './dashboard.module.css';
+import './dashboard.css';
 
 export default function Dashboard() {
 
@@ -47,13 +47,11 @@ export default function Dashboard() {
                       }, 1000);
                     }, 150);
                   }
-
-
             }}
           />
         </div>
         {/* painel ao lado do mapa */}
-        <div className="details-section">
+        <div className="right-panel">
           <InfoPainel data={hoverData} />
         </div>
 
@@ -61,7 +59,7 @@ export default function Dashboard() {
 
       {selectedState && (
        
-          <div ref={tabelaRef}>
+          <div className="right-panel" ref={tabelaRef}>
             <TabelaUnidades
               estado={selectedState}
               data={tableData}

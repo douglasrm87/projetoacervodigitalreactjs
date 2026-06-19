@@ -5,7 +5,7 @@ export default function InfoPainel({ data }) {
         <div className="info-box">
           Passe o mouse sobre um{" "}
           <span style={{ color: "#002F6C", fontWeight: "bold", fontSize: "1.1em" }}>
-            Estado
+            Regional
           </span>{" "}
             ou{" "}
           <span style={{ color: "#e7146c", fontWeight: "bold", fontSize: "1.1em" }}>
