@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import "./TabelaUnidade.css";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +8,11 @@ export default function TabelaUnidades({ estado, data }) {
   const navigate = useNavigate();
   const tableRef = useRef(null);
 
-  // ✅ Agrupar por instituição
+  // Agrupar por instituição
   const groupedData = data.reduce((acc, item) => {
     const key = item.instituicao_ensino;
-
     if (!acc[key]) acc[key] = [];
     acc[key].push(item);
-
     return acc;
   }, {});
 
@@ -30,9 +27,8 @@ export default function TabelaUnidades({ estado, data }) {
     }
   }, [openIndex]);
 
-
   return (
-    <div className="table-container" >
+    <div className="table-container">
       <h3>Unidades - {estado}</h3>
 
       {instituicoes.map((instituicao, index) => {
@@ -41,7 +37,7 @@ export default function TabelaUnidades({ estado, data }) {
         return (
           <div key={instituicao} className="accordion-item">
             
-            {/* ✅ HEADER DESTACADO */}
+            {/* HEADER DESTACADO */}
             <div
               className="accordion-header"
               onClick={() => setOpenIndex(isOpen ? null : index)}
@@ -56,7 +52,7 @@ export default function TabelaUnidades({ estado, data }) {
               {isOpen ? <FaChevronUp /> : <FaChevronDown />}
             </div>
 
-            {/* ✅ TABELA COLAPSÁVEL */}
+            {/* TABELA COLAPSÁVEL */}
             {isOpen && (
               <div className="accordion-content" ref={tableRef}>
                 <table>
@@ -70,18 +66,18 @@ export default function TabelaUnidades({ estado, data }) {
 
                   <tbody>
                     {groupedData[instituicao].map(item => (
-                        <tr
-                          key={item.id}
-                          className="clickable-row"
-                          title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
-                          onClick={() =>
-                            navigate(`/detalhe/${item.id}`, { state: item })
-                          }
-                          >
-                            <td>{item.nome_nucleo_extensao}</td>
-                            <td>{item.curso}</td>
-                            <td>{item.publico_impactado}</td>
-                        </tr>
+                      <tr
+                        key={item.id}
+                        className="clickable-row"
+                        title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
+                        onClick={() =>
+                          navigate(`/detalhe/${item.id}`, { state: item })
+                        }
+                      >
+                        <td>{item.nome_nucleo_extensao}</td>
+                        <td>{item.curso}</td>
+                        <td>{item.publico_impactado}</td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>

@@ -1,6 +1,8 @@
-
 .table-container {
   margin-top: 20px;
+  /* Garante que o contêiner preencha o espaço que o pai (página) determinar */
+  width: 100%; 
+  box-sizing: border-box;
 }
 
 .clickable-row {
@@ -19,6 +21,7 @@
   overflow: hidden;
   border: 1px solid #e2e8f0;
   margin-bottom: 12px;
+  background-color: #fff;
 }
 
 /* HEADER */
@@ -30,13 +33,16 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  width: 50%;
+  width: 100%; /* Ajustado para ocupar todo o card */
+  box-sizing: border-box;
 }
+
 /* CONTEÚDO */
 .accordion-content {
   background: #4b0df7;
   padding: 14px 16px;
-  width: 50%;
+  width: 100%; /* Ajustado para ocupar todo o card */
+  box-sizing: border-box;
 }
 
 .accordion-header strong {
@@ -52,8 +58,6 @@
   font-size: 12px;
 }
 
-
-
 /* TABELA */
 .accordion-content table {
   width: 100%;
@@ -62,6 +66,7 @@
 
 .accordion-content th {
   background: #4b0df7;
+  color: white; /* Adicionado para garantir leitura sobre o fundo roxo */
   padding: 10px;
   text-align: center;
 }
@@ -70,28 +75,21 @@
   padding: 10px;
   text-align: center;
   border-top: 1px solid #e2e8f0;
+  color: rgb(220, 16, 16); /* Corrigindo contraste no fundo roxo, se necessário pode mudar para preto e alterar o fundo */
 }
 
 /* HOVER */
-.accordion-content tr:hover {
+.accordion-content tr:hover td {
   background: #f8fafc;
+  color: #0f172a; /* Texto escuro no hover claro */
 }
 
 /* RESPONSIVO */
 @media (max-width: 768px) {
-
-  /* ✅ esconde o header tradicional */
   .accordion-content thead {
     display: none;
   }
 
-  /* ✅ mantém tabela como container */
-  .accordion-content table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  /* ✅ cada linha vira um card */
   .accordion-content tr {
     display: block;
     margin-bottom: 12px;
@@ -101,16 +99,16 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   }
 
-  /* ✅ células empilhadas */
   .accordion-content td {
     display: block;
     width: 100%;
     text-align: left;
     padding: 6px 4px;
     font-size: 14px;
+    color: #0f172a; /* Garante leitura no card branco */
+    border-top: none;
   }
 
-  /* ✅ label antes do valor */
   .accordion-content td::before {
     font-weight: bold;
     display: block;
@@ -118,102 +116,31 @@
     margin-bottom: 2px;
   }
 
-  .accordion-content td:nth-child(1)::before {
-    content: "Núcleo";
-  }
-
-  .accordion-content td:nth-child(2)::before {
-    content: "Curso";
-  }
-
-  .accordion-content td:nth-child(3)::before {
-    content: "Público";
-  }
-   .accordion-header {
-    width: 100%;
-  }
-  .accordion-content {
-    width: 100%;
-  }
+  .accordion-content td:nth-child(1)::before { content: "Núcleo"; }
+  .accordion-content td:nth-child(2)::before { content: "Curso"; }
+  .accordion-content td:nth-child(3)::before { content: "Público"; }
 }
 
 /* CELULAR PEQUENO */
 @media (max-width: 600px) {
-
-  /* Esconde cabeçalho da tabela */
-  .accordion-content thead {
-    display: none;
-  }
-
-  /* Mantém tabela base */
-  .accordion-header {
-    width: 100%;
-  }
-  .accordion-content {
-    width: 100%;
-  }
-  .accordion-content table {
-    width: 100%;
-  }
-
-  /* Cada linha vira um card compacto */
-  .accordion-content tr {
-    display: block;
-    margin-bottom: 10px;
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #e2e8f0;
-  }
-
-  /* Células mais organizadas */
   .accordion-content td {
     display: flex;
-    justify-content: space-between; /* ✅ label esquerda, valor direita */
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start; /* Permite quebra elegante */
+    flex-direction: column;
     padding: 6px 0;
     font-size: 13px;
-    border: none;
   }
 
-  /* Label (antes do valor) */
   .accordion-content td::before {
     font-weight: 600;
     color: #475569;
-  }
-
-  /* Permite quebra no campo Curso */
-  .accordion-content td:nth-child(1) {
-    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
-    align-items: flex-start;
-  }
-  .accordion-content td:nth-child(1)::before {
     margin-bottom: 2px;
   }
 
-  /* Permite quebra no campo Curso */
-  .accordion-content td:nth-child(2) {
-    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
-    align-items: flex-start;
-  }
-  .accordion-content td:nth-child(2)::before {
-    margin-bottom: 2px;
-  }
-
-  /* força quebra de texto longo */
   .accordion-content td:nth-child(2) {
     word-break: break-word;
     overflow-wrap: anywhere;
     white-space: normal;
   }
-
-  /* Permite quebra no campo Curso */
-  .accordion-content td:nth-child(3) {
-    flex-direction: column; /* ✅ joga label em cima e texto abaixo */
-    align-items: flex-start;
-  }
-  .accordion-content td:nth-child(3)::before {
-    margin-bottom: 2px;
-  }
- 
 }
