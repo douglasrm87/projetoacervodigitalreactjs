@@ -64,7 +64,10 @@ const cidades = [
 
 ];
 
-export default function MapBrasil({ onHover, onClickState }) {
+export default function MapBrasil({ onHover, onClickState,
+    nucleoFiltro, 
+    semestreFiltro
+    }) {
 
   // ✅ HOVER
   const handleHover = async (sigla) => {
@@ -105,6 +108,7 @@ export default function MapBrasil({ onHover, onClickState }) {
   };
 
   // ✅ CLICK
+  /*
   const handleClick = async (sigla) => {
     const { data } = await supabase
       .from('Lancamento_Nucleo_Extensao')
@@ -116,10 +120,37 @@ export default function MapBrasil({ onHover, onClickState }) {
 
 
     onClickState(sigla, data || []);
-  };
+  };*/
+  
+  // ✅ CLICK (REGIONAL) ✅ COM FILTRO
+    const handleClick = async (sigla) => {
+
+      let query = supabase
+        .from('Lancamento_Nucleo_Extensao')
+        .select('*')
+        .eq('regional', sigla);
+
+      // ✅ FILTRO NÚCLEO
+      if (nucleoFiltro) {
+        query = query.ilike('nome_nucleo_extensao', `%${nucleoFiltro}%`);
+      }
+
+      // ✅ FILTRO SEMESTRE
+      if (semestreFiltro) {
+        query = query.ilike('periodo_realizacao', `%${semestreFiltro}%`);
+      }
+
+      const { data } = await query
+        .order('instituicao_ensino', { ascending: false })
+        .order('municipio')
+        .order('nome_nucleo_extensao');
+
+      onClickState(sigla, data || []);
+    };
+
 
    // ✅ CLICK
-  const handleClickCidade = async (sigla) => {
+  /*const handleClickCidade = async (sigla) => {
     const { data } = await supabase
       .from('Lancamento_Nucleo_Extensao')
       .select('*')
@@ -127,7 +158,7 @@ export default function MapBrasil({ onHover, onClickState }) {
       .order('instituicao_ensino', { ascending: false })
       .order('municipio')
       .order('nome_nucleo_extensao');
-
+*/
     // Aqui é feito o envio dos dados ao programa TabelaUnidade.jsx
     /*
       ✔ MapBrasil recebe onClickState
@@ -141,10 +172,37 @@ export default function MapBrasil({ onHover, onClickState }) {
         enviam eventos
         recebem dados
     */
+   /*
+    onClickState(sigla, data || []);
+  };*/
+
+  
+// ✅ CLICK CIDADE ✅ COM FILTRO
+  const handleClickCidade = async (sigla) => {
+
+    let query = supabase
+      .from('Lancamento_Nucleo_Extensao')
+      .select('*')
+      .eq('municipio', sigla);
+
+    // ✅ FILTRO NÚCLEO
+    if (nucleoFiltro) {
+      query = query.ilike('nome_nucleo_extensao', `%${nucleoFiltro}%`);
+    }
+
+    // ✅ FILTRO SEMESTRE
+    if (semestreFiltro) {
+      query = query.ilike('periodo_realizacao', `%${semestreFiltro}%`);
+    }
+
+    const { data } = await query
+      .order('instituicao_ensino', { ascending: false })
+      .order('municipio')
+      .order('nome_nucleo_extensao');
+
     onClickState(sigla, data || []);
   };
 
-  
   const brasilBounds = [
     [-33.75, -73.99], // sudoeste (RS/Acre)
     [5.27, -34.79]    // nordeste (RR/RN)
