@@ -202,7 +202,7 @@ export default function Dashboard() {
     <div style={{ backgroundColor: 'var(--bg-corporate)', minHeight: '100vh' }}>
       <header className="dashboard-header">
         <div>
-          <h1>Portal Executivo: Núcleos de Extensão Brasil</h1>
+          <h1>Bem-vindo à nossa biblioteca digital. Conheça os projetos extensionistas e explore iniciativas que geram impacto positivo na comunidade.</h1>
           <span style={{color: 'var(--estacio-cyan)', fontSize: '0.9rem'}}>Dados Estratégicos Regiões e Unidades</span>
         </div>
         <div className="badge-gestao">ALTA GESTÃO</div>
@@ -238,69 +238,69 @@ export default function Dashboard() {
                   attribution='&copy; OpenStreetMap contributors'
                 />
                  
-                 {geoJsonData && (
-  <GeoJSON 
-    data={geoJsonData}
-    // MAPEA E TRANSFORMA TODOS OS QUADRADOS EM BOLAS AZUIS PREMIUM
-    pointToLayer={(feature, latlng) => {
-      return L.circleMarker(latlng, {
-        radius: 8,                  // Tamanho da esfera
-        fillColor: '#002F6C',       // Azul escuro corporativo
-        color: '#3bec0e',           // Borda Ciano em alta definição
-        weight: 2,
-        opacity: 1,
-        fillOpacity: 0.9
-      });
-    }}
-    style={(feature) => {
-      const sigla = feature.properties?.sigla;
-      const isSelected = selectedState === sigla;
-      // Garante que se a feature for um ponto, ela não tente aplicar estilo de polígono
-      if (feature.geometry?.type === "Point") return {};
-      
-      return {
-        fillColor: isSelected ? '#00A3E0' : '#E2E8F0',
-        weight: 1.5,
-        opacity: 1,
-        color: '#FFFFFF',
-        dashArray: '', // Linha sólida, elimina caixas tracejadas
-        fillOpacity: 0.75
-      };
-    }}
-    onEachFeature={(feature, layer) => {
-      const sigla = feature.properties?.sigla;
-      
-      layer.on('mouseenter', () => {
-        if (layer.setStyle) {
-          layer.setStyle({
-            fillColor: '#002F6C',
-            weight: 2,
-            color: '#00C4D5',
-            fillOpacity: 0.9
-          });
-        }
-        handleStateHover(sigla);
-      });
-      
-      layer.on('mouseleave', () => {
-        const isSelected = selectedState === sigla;
-        if (layer.setStyle && feature.geometry?.type !== "Point") {
-          layer.setStyle({
-            fillColor: isSelected ? '#00A3E0' : '#E2E8F0',
-            weight: 1.5,
-            color: '#FFFFFF',
-            fillOpacity: 0.75
-          });
-        }
-        handleStateLeave();
-      });
-      
-      layer.on('click', () => {
-        handleGeographyClick(feature);
-      });
-    }}
-  />
-)}
+                {geoJsonData && (
+                  <GeoJSON 
+                    data={geoJsonData}
+                    // MAPEA E TRANSFORMA TODOS OS QUADRADOS EM BOLAS AZUIS PREMIUM
+                    pointToLayer={(feature, latlng) => {
+                      return L.circleMarker(latlng, {
+                        radius: 8,                  // Tamanho da esfera
+                        fillColor: '#002F6C',       // Azul escuro corporativo
+                        color: '#3bec0e',           // Borda Ciano em alta definição
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.9
+                      });
+                    }}
+                    style={(feature) => {
+                      const sigla = feature.properties?.sigla;
+                      const isSelected = selectedState === sigla;
+                      // Garante que se a feature for um ponto, ela não tente aplicar estilo de polígono
+                      if (feature.geometry?.type === "Point") return {};
+                      
+                      return {
+                        fillColor: isSelected ? '#00A3E0' : '#E2E8F0',
+                        weight: 1.5,
+                        opacity: 1,
+                        color: '#FFFFFF',
+                        dashArray: '', // Linha sólida, elimina caixas tracejadas
+                        fillOpacity: 0.75
+                      };
+                    }}
+                    onEachFeature={(feature, layer) => {
+                      const sigla = feature.properties?.sigla;
+                      
+                      layer.on('mouseenter', () => {
+                        if (layer.setStyle) {
+                          layer.setStyle({
+                            fillColor: '#002F6C',
+                            weight: 2,
+                            color: '#00C4D5',
+                            fillOpacity: 0.9
+                          });
+                        }
+                        handleStateHover(sigla);
+                      });
+                      
+                      layer.on('mouseleave', () => {
+                        const isSelected = selectedState === sigla;
+                        if (layer.setStyle && feature.geometry?.type !== "Point") {
+                          layer.setStyle({
+                            fillColor: isSelected ? '#00A3E0' : '#E2E8F0',
+                            weight: 1.5,
+                            color: '#FFFFFF',
+                            fillOpacity: 0.75
+                          });
+                        }
+                        handleStateLeave();
+                      });
+                      
+                      layer.on('click', () => {
+                        handleGeographyClick(feature);
+                      });
+                    }}
+                  />
+                )}
               </MapContainer>
             </div>
 

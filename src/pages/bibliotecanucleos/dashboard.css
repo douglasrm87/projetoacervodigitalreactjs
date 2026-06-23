@@ -1,27 +1,44 @@
+:root {
+  --primary: #12284C;     /* Azul YDUQS */
+  --primary-light: #002F6C;
+  --bg: #F5F7FA;
+  --white: #FFFFFF;
+  --border: #E5E7EB;
+  --text-secondary: #6B7280;
+}
+
+/* ========================= */
+/* GERAL */
+/* ========================= */
+
 body {
   margin: 0;
   font-family: Arial;
+  background: var(--bg);
 }
 
 .dashboard {
-  background: #f4f6f9;
-  min-height: 100dvh; /* melhor para mobile */
+  background: var(--bg);
+  min-height: 100dvh;
 }
 
 .header {
-  background: #002F6C;
-  color: white;
+  background: var(--primary);
+  color: var(--white);
   padding: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 /* ========================= */
-/* LAYOUT PRINCIPAL */
+/* LAYOUT */
 /* ========================= */
+
 .main {
   display: flex;
   gap: 20px;
   padding: 20px;
-  flex-wrap: wrap; /* permite quebrar no mobile */
+  flex-wrap: wrap;
 }
 
 .map-section {
@@ -33,9 +50,9 @@ body {
   height: 500px;
   border-radius: 8px;
   width: 100%;
+  border: 1px solid var(--border);
 }
 
-/* Garante que o mapa interno respeite o tamanho */
 .map iframe,
 .map canvas,
 .map #map {
@@ -49,17 +66,41 @@ body {
 }
 
 .info-box {
-  background: white;
+  background: var(--white);
   padding: 20px;
   border-radius: 8px;
+  border: 1px solid var(--border);
 }
+
+/* ========================= */
+/* MÉTRICAS */
+/* ========================= */
 
 .metrics {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
   gap: 10px;
-  flex-wrap: wrap; /* quebra no mobile */
+  flex-wrap: wrap;
+}
+
+/* ========================= */
+/* BOTÃO (AGORA NEUTRO) */
+/* ========================= */
+
+.btn-limpar {
+  width: fit-content;
+  padding: 6px 12px;
+  white-space: nowrap;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-limpar:hover {
+  background: var(--primary-light);
 }
 
 /* ========================= */
@@ -68,28 +109,35 @@ body {
 
 .table-container {
   padding: 20px;
-  overflow-x: auto; /* rolagem horizontal no celular */
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
-  background: white;
+  background: var(--white);
   border-collapse: collapse;
-  min-width: 600px; /* evita quebrar layout */
+  min-width: 600px;
 }
 
 th {
-  background: #002F6C;
-  color: white;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 600;
 }
 
 td, th {
-  padding: 8px;
-  border: 1px solid #eee;
+  padding: 10px;
+  border: 1px solid var(--border);
 }
 
+tr:hover td {
+  background: #f0f4f8;
+}
 
+/* ========================= */
 /* PAINEL DIREITO */
+/* ========================= */
+
 .right-panel {
   flex: 1;
   display: flex;
@@ -99,51 +147,20 @@ td, th {
   overflow-y: auto;
 }
 
-/* Cards internos */
 .right-panel > * {
-  background: #fff;
+  background: var(--white);
   border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.btn-limpar {
- 
-width: fit-content;
-  padding: 0 12px;
-  white-space: nowrap;
-
+  padding: 12px;
+  border: 1px solid var(--border);
 }
 
 /* ========================= */
-/* RESPONSIVIDADE */
+/* RESPONSIVO */
 /* ========================= */
 
-/* 📱 Tablet */
-@media (max-width: 1024px) {
-
-  .main {
-    flex-direction: column;
-  }
-
-  .map {
-    height: 400px;
-  }
-}
- 
-
-/* ========================= */
-/* RESPONSIVIDADE FORÇADA */
-/* ========================= */
-
-/* Tablet e celular */
 @media (max-width: 900px) {
   .main {
-    flex-direction: column; /* empilha */
-  }
-
-  .map-section,
-  .details-section {
-    width: 100%; /* ocupa toda largura */
+    flex-direction: column;
   }
 
   .map {
@@ -151,10 +168,8 @@ width: fit-content;
   }
 }
 
-/* Celulares menores */
 @media (max-width: 600px) {
   .main {
-    flex-direction: column;
     padding: 10px;
   }
 
@@ -162,55 +177,60 @@ width: fit-content;
     height: 280px;
   }
 
-  .map-section,
-  .details-section {
-    width: 100%;
-  }
-
   .metrics-table {
-    width: 100%;
-    margin-top: 16px;
-    overflow-x: auto; /* ✅ evita estourar tela */
-  }
-
-  .metrics-table table {
-    width: 100%;
-    min-width: 300px; /* ✅ garante layout mínimo */
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    overflow: hidden;
+    overflow-x: auto;
   }
 
   .metrics-table th {
-    background-color: #3907ee;
-    color: #fff;
-    padding: 10px;
-    font-size: 12px; /* ✅ reduz tamanho */
-    text-align: center;
-    font-weight: 600;
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 12px;
   }
 
   .metrics-table td {
-    padding: 10px;
-    text-align: center;
-    font-size: 14px; /* ✅ menor e mais legível */
+    font-size: 14px;
     font-weight: bold;
   }
+}
+.filtros-container {
+  display: flex;
+  justify-content: flex-end; /* ✅ joga pra direita */
+  gap: 16px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
 
-  /* ✅ linhas mais compactas */
-  .metrics-table th,
-  .metrics-table td {
-    white-space: nowrap;
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+.filtro-item label {
+  font-size: 12px;
+  color: #6B7280;
+  margin-bottom: 4px;
+}
+
+.filtro-item select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  background: #ffffff;
+}
+
+/* ✅ MOBILE (iPhone principalmente) */
+@media (max-width: 600px) {
+  .filtros-container {
+    justify-content: center; /* centraliza no celular */
+    gap: 10px;
   }
 
-  .metrics-table th:not(:last-child),
-  .metrics-table td:not(:last-child) {
-    border-right: 1px solid #ddd;
+  .filtro-item {
+    width: 100%;
   }
 
-  .metrics-table tr:not(:last-child) td {
-    border-bottom: 1px solid #ddd;
+  .filtro-item select {
+    width: 100%;
   }
 }

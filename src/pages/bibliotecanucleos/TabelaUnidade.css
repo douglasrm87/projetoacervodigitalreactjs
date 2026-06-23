@@ -1,82 +1,105 @@
+
 .table-container {
-  margin-top: 20px;
-  /* Garante que o contêiner preencha o espaço que o pai (página) determinar */
-  width: 100%; 
-  box-sizing: border-box;
+  margin-top: 16px;
+  max-width: 480px;     /* ✅ LIMITA largura do painel */
+  width: 100%;
 }
+
 
 .clickable-row {
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
 
+
+/* HOVER */
 .clickable-row:hover {
-  background-color: #f5f7fa;
-  transform: scale(1.01);
+  background: #F5F7FA;
 }
+
 
 /* CARD DA INSTITUIÇÃO */
+
+/* CARD */
 .accordion-item {
-  border-radius: 12px;
+  border-radius: 10px;
+  border: 1px solid #E5E7EB;
+  margin-bottom: 10px;
+  background: #fff;
   overflow: hidden;
-  border: 1px solid #e2e8f0;
-  margin-bottom: 12px;
-  background-color: #fff;
 }
 
-/* HEADER */
+
+
+/* HEADER (YDUQS style) */
 .accordion-header {
-  background: #1e293b;
+  background: #12284C;
   color: white;
-  padding: 14px 16px;
+  padding: 12px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  width: 100%; /* Ajustado para ocupar todo o card */
-  box-sizing: border-box;
 }
+
+
 
 /* CONTEÚDO */
 .accordion-content {
-  background: #4b0df7;
-  padding: 14px 16px;
-  width: 100%; /* Ajustado para ocupar todo o card */
-  box-sizing: border-box;
+  padding: 10px;
+  background: #fff;
 }
+
 
 .accordion-header strong {
   font-size: 15px;
 }
 
+
+/* BADGE */
 .badge {
-  margin-left: 10px;
-  background: #38bdf8;
-  color: #0f172a;
-  padding: 4px 10px;
+  margin-left: 8px;
+  background: #E5E7EB;
+  color: #12284C;
+  padding: 3px 8px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
-/* TABELA */
+
+
+/* ✅ TABELA CONTROLADA (PONTO PRINCIPAL) */
 .accordion-content table {
   width: 100%;
+  max-width: 100%;   /* ✅ nunca ultrapassa o card */
+  table-layout: fixed; /* ✅ impede crescimento */
   border-collapse: collapse;
 }
 
+
+
+/* HEADER TABLE */
 .accordion-content th {
-  background: #4b0df7;
-  color: white; /* Adicionado para garantir leitura sobre o fundo roxo */
-  padding: 10px;
-  text-align: center;
+  background: #F5F7FA;
+  color: #12284C;
+  padding: 8px;
+  font-size: 13px;
+  text-align: left;
 }
 
+
+/* CÉLULAS */
 .accordion-content td {
-  padding: 10px;
-  text-align: center;
-  border-top: 1px solid #e2e8f0;
-  color: rgb(220, 16, 16); /* Corrigindo contraste no fundo roxo, se necessário pode mudar para preto e alterar o fundo */
+  padding: 8px;
+  font-size: 13px;
+  border-top: 1px solid #E5E7EB;
+
+  /* ✅ ESSENCIAL → evita estourar layout */
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
+
 
 /* HOVER */
 .accordion-content tr:hover td {
@@ -84,35 +107,55 @@
   color: #0f172a; /* Texto escuro no hover claro */
 }
 
-/* RESPONSIVO */
+
+
+.accordion-content th:nth-child(1) {
+  width: 30%;
+}
+
+.accordion-content th:nth-child(2) {
+  width: 30%;
+}
+
+.accordion-content th:nth-child(3) {
+  width: 40%; /* Público maior que antes */
+}
+
+
+/* ✅ RESPONSIVO (mantido e melhorado) */
 @media (max-width: 768px) {
+
+  .table-container {
+    max-width: 100%;
+  }
+
+  .accordion-content table {
+    display: block;
+  }
+
   .accordion-content thead {
     display: none;
   }
 
   .accordion-content tr {
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     background: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    padding: 8px;
+    border: 1px solid #E5E7EB;
   }
 
   .accordion-content td {
     display: block;
-    width: 100%;
-    text-align: left;
-    padding: 6px 4px;
-    font-size: 14px;
-    color: #0f172a; /* Garante leitura no card branco */
-    border-top: none;
+    font-size: 13px;
+    padding: 5px 0;
   }
 
   .accordion-content td::before {
-    font-weight: bold;
+    font-weight: 600;
+    color: #6B7280;
     display: block;
-    color: #334155;
     margin-bottom: 2px;
   }
 
@@ -120,6 +163,7 @@
   .accordion-content td:nth-child(2)::before { content: "Curso"; }
   .accordion-content td:nth-child(3)::before { content: "Público"; }
 }
+
 
 /* CELULAR PEQUENO */
 @media (max-width: 600px) {

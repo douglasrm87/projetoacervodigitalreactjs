@@ -58,7 +58,7 @@ export default function TabelaUnidades({ estado, data }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Núcleo</th>
+                      <th>Núcleo - Clique e conheça o projeto</th>
                       <th>Curso</th>
                       <th>Público</th>
                     </tr>

@@ -4,12 +4,16 @@ import { supabase } from '../../infra/supabase/supabaseClient';
 import 'leaflet/dist/leaflet.css';
 import { Tooltip } from 'react-leaflet';
 
+import L from 'leaflet';
+import { Marker } from 'react-leaflet';
+
+
 // ✅ POSIÇÃO REAL DOS ESTADOS (CENTRO APROXIMADO)
 const estados = [
-  { sigla: "WYDEN", lat: -15.96, lng: -45.51 },
-  { sigla: "NORDESTE", lat: -8.28, lng: -40.07 },
-  { sigla: "NORTE-SUL", lat: -8.28, lng: -53.68 },
-  { sigla: "SUDESTE", lat: -23.33, lng: -50 }
+  { sigla: "WYDEN", lat: -15.96, lng: -51.51 },
+  { sigla: "NORDESTE", lat: -8.28, lng: -43.07 },
+  { sigla: "NORTE-SUL", lat: -6.28, lng: -58.68 },
+  { sigla: "SUDESTE", lat: -26.33, lng: -50 }
   
 ];
 
@@ -64,9 +68,17 @@ const cidades = [
 
 ];
 
+// Ícone estilo GPS
+const gpsIcon = new L.Icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+
 export default function MapBrasil({ onHover, onClickState,
     nucleoFiltro, 
-    semestreFiltro
+    semestreFiltro,
+    regionalFiltro
     }) {
 
   // ✅ HOVER
@@ -107,21 +119,6 @@ export default function MapBrasil({ onHover, onClickState,
     }
   };
 
-  // ✅ CLICK
-  /*
-  const handleClick = async (sigla) => {
-    const { data } = await supabase
-      .from('Lancamento_Nucleo_Extensao')
-      .select('*')
-      .eq('regional', sigla)
-      .order('instituicao_ensino', { ascending: false })
-      .order('municipio')
-      .order('nome_nucleo_extensao');
-
-
-    onClickState(sigla, data || []);
-  };*/
-  
   // ✅ CLICK (REGIONAL) ✅ COM FILTRO
     const handleClick = async (sigla) => {
 
@@ -139,6 +136,11 @@ export default function MapBrasil({ onHover, onClickState,
       if (semestreFiltro) {
         query = query.ilike('periodo_realizacao', `%${semestreFiltro}%`);
       }
+      // ✅ FILTRO Regional
+      if (regionalFiltro) {
+        query = query.ilike('regional', `%${regionalFiltro}%`);
+      }
+      
 
       const { data } = await query
         .order('instituicao_ensino', { ascending: false })
@@ -149,32 +151,6 @@ export default function MapBrasil({ onHover, onClickState,
     };
 
 
-   // ✅ CLICK
-  /*const handleClickCidade = async (sigla) => {
-    const { data } = await supabase
-      .from('Lancamento_Nucleo_Extensao')
-      .select('*')
-      .eq('municipio', sigla)
-      .order('instituicao_ensino', { ascending: false })
-      .order('municipio')
-      .order('nome_nucleo_extensao');
-*/
-    // Aqui é feito o envio dos dados ao programa TabelaUnidade.jsx
-    /*
-      ✔ MapBrasil recebe onClickState
-      ✔ Você está chamando onClickState(sigla, data)
-      ✔ Existe um componente pai com useState
-      ✔ TabelaUnidades recebe data via props
-      "Lifting State Up"
-        👉 Estado fica no componente pai (programa Dashboard.jsx nesta pasta)
-        👉 Filhos apenas:
-
-        enviam eventos
-        recebem dados
-    */
-   /*
-    onClickState(sigla, data || []);
-  };*/
 
   
 // ✅ CLICK CIDADE ✅ COM FILTRO
@@ -208,6 +184,9 @@ export default function MapBrasil({ onHover, onClickState,
     [5.27, -34.79]    // nordeste (RR/RN)
   ];
 
+  const estadosFiltrados = regionalFiltro
+      ? estados.filter(e => e.sigla === regionalFiltro)
+      : estados;
   return (
     
       <MapContainer
@@ -227,59 +206,60 @@ export default function MapBrasil({ onHover, onClickState,
 
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      {estados.map((uf, i) => (
+      {estadosFiltrados.map((uf, i) => (
         <CircleMarker
                 key={i}
                 center={[uf.lat, uf.lng]}
-                radius={51}
+                radius={55}
                 pathOptions={{
-                    fillColor: '#002F6C',
-                    color: '#ffffff',
-                    weight: 2,
+                    fillColor: '#eeeeee',
+                    color: '#12284C',
+                    weight: 3,
                     fillOpacity: 1
             }}
             eventHandlers={{
-                mouseover: () => handleHover(uf.sigla),
-                click: () => handleClick(uf.sigla)
+              mouseover: (e) => {
+                e.target.setStyle({
+                  fillOpacity: 0.35,
+                  weight: 3
+                });
+                handleHover(uf.sigla);
+              },
+              mouseout: (e) => {
+                e.target.setStyle({
+                  fillOpacity: 0.15,
+                  weight: 2
+                });
+              },
+              click: () => handleClick(uf.sigla)
             }}
-        >
-            <Tooltip
-                direction="center"
-                offset={[0, -10]}
-                opacity={1}
-                permanent
-            >
+          >
+            
+          <Tooltip direction="top" offset={[0, -10]}>
             <strong>{uf.sigla}</strong>
-            </Tooltip>
+          </Tooltip>
+            
+            
         </CircleMarker>
         ))}
 
         {cidades.map((cidade, i) => (
-        <CircleMarker
+        <Marker
                 key={i}
-                center={[cidade.lat, cidade.lng]}
-                radius={6}
-                pathOptions={{
-                fillColor: '#e7146c',
-                color: '#ffffff',
-                weight: 1,
-                fillOpacity: 1
-            }}
-            eventHandlers={{
-                mouseover: () => handleHover(cidade.sigla),
-                click: () => handleClickCidade(cidade.sigla)
-            }}
-        >
-            <Tooltip
-                direction="top"
-                offset={[0, -10]}
-                opacity={1}
-                permanent={false} // só aparece no hover
+                position={[cidade.lat, cidade.lng]}
+                icon={gpsIcon}
+                eventHandlers={{
+                    mouseover: () => handleHover(cidade.sigla),
+                    click: () => handleClickCidade(cidade.sigla)
+                }}
             >
-            <strong>{cidade.sigla}</strong>
-            </Tooltip>
-        </CircleMarker>
-        ))}
+                            
+          <Tooltip direction="top" offset={[0, -10]}>
+                <strong>{cidade.sigla}</strong>
+          </Tooltip>
+        </Marker>
+
+      ))}
 
     </MapContainer>
   );

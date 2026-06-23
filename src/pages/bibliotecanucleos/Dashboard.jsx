@@ -16,13 +16,14 @@ export default function Dashboard() {
     // ✅ FILTROS
   const [nucleo, setNucleo] = useState('');
   const [semestre, setSemestre] = useState('');
+  const [regional, setRegional] = useState('');
   
   
   // ✅ sempre que mudar filtro → reseta tela
   useEffect(() => {
     setSelectedState(null);
     setTableData([]);
-  }, [nucleo, semestre]);
+  }, [regional, nucleo, semestre]);
 
 
   return (
@@ -30,8 +31,7 @@ export default function Dashboard() {
 
       {/* HEADER */}
       <header className="header">
-        <h1>Portal Executivo - Núcleos de Extensão</h1>
-        <span>Visão Estratégica - Estácio</span>
+        <h1>Bem-vindo à nossa biblioteca digital. Conheça os projetos extensionistas e explore iniciativas que geram impacto positivo na comunidade.</h1>
       </header>
 
 
@@ -46,9 +46,24 @@ export default function Dashboard() {
         }}
       >
 
+        
+      <div className="filtros-container">
+        
+         {/* Regional */}
+        <div className="filtro-item">
+          <label>Regional:</label>
+          <select value={regional} onChange={(e) => setRegional(e.target.value)}>
+            <option value="">Todos</option>
+            <option value="NORTE-SUL">NORTE-SUL</option>
+            <option value="NORDESTE">NORDESTE</option>
+            <option value="SUDESTE">SUDESTE</option>
+            <option value="WYDEN">WYDEN</option>
+          </select>
+        </div>
+
         {/* Núcleo */}
-        <div>
-          <label>Núcleo:</label><br />
+        <div className="filtro-item">
+          <label>Núcleo:</label>
           <select value={nucleo} onChange={(e) => setNucleo(e.target.value)}>
             <option value="">Todos</option>
             <option value="Brinquedoteca">Brinquedoteca</option>
@@ -60,8 +75,8 @@ export default function Dashboard() {
         </div>
 
         {/* Semestre */}
-        <div>
-          <label>Semestre:</label><br />
+        <div className="filtro-item">
+          <label>Semestre:</label>
           <select value={semestre} onChange={(e) => setSemestre(e.target.value)}>
             <option value="">Todos</option>
             <option value="2026-01">2026-01</option>
@@ -69,15 +84,19 @@ export default function Dashboard() {
             <option value="2027-01">2027-01</option>
             <option value="2027-02">2027-02</option>
             <option value="2028-01">2028-01</option>
-            <option value="2028-01">2028-02</option>
+            <option value="2028-02">2028-02</option>
           </select>
         </div>
+
+      </div>
+
 
         {/* Botão limpar */}
         <button className="btn-limpar"
           onClick={() => {
             setNucleo('');
             setSemestre('');
+            setRegional('');
           }}
           style={{ height: '30px' }}
         >
@@ -93,6 +112,7 @@ export default function Dashboard() {
             onHover={setHoverData}
             nucleoFiltro={nucleo}                 // ✅ PASSANDO FILTRO
             semestreFiltro={semestre}            // ✅ PASSANDO FILTRO
+            regionalFiltro={regional}
 
             onClickState={(state, data) => {
               setSelectedState(state);
@@ -101,39 +121,41 @@ export default function Dashboard() {
 
               // ✅ evita múltiplos scrolls
                  
-                  if (!scrollLock.current) {
-                    scrollLock.current = true;
+              if (!scrollLock.current) {
+                scrollLock.current = true;
 
-                    setTimeout(() => {
-                      tabelaRef.current?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                      });
+                setTimeout(() => {
+                  tabelaRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                  });
 
-                      setTimeout(() => {
-                        scrollLock.current = false;
-                      }, 1000);
-                    }, 150);
-                  }
+                  setTimeout(() => {
+                    scrollLock.current = false;
+                  }, 1000);
+                }, 150);
+              }
             }}
           />
         </div>
         {/* painel ao lado do mapa */}
         <div className="right-panel">
           <InfoPainel data={hoverData} />
+        
+
+          {selectedState && (
+          
+              <div className="right-panel" ref={tabelaRef}>
+                <TabelaUnidades
+                  estado={selectedState}
+                  data={tableData}
+                />
+              </div>
+          )}
         </div>
 
       </main>
 
-      {selectedState && (
-       
-          <div className="right-panel" ref={tabelaRef}>
-            <TabelaUnidades
-              estado={selectedState}
-              data={tableData}
-            />
-          </div>
-      )}
 
     </div>
   );

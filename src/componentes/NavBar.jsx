@@ -3,10 +3,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FaHome,
-  FaSignInAlt,
-  FaCertificate,
   FaBook,
-  FaTools
 } from "react-icons/fa";
 
 
@@ -19,8 +16,6 @@ export default function Navbar() {
   return (
     <nav className="nav">
       <div className="nav-header">
-        <div className="logo">Acervo Digital</div>
-
         {/* SANDWICH (3 linhas) */}
         <div
           className={`hamburger ${open ? "active" : ""}`}
@@ -37,17 +32,10 @@ export default function Navbar() {
           <FaHome /> <span>Início</span>
         </NavLink>
 
-        <NavLink onClick={handleClick} to="/login">
-          <FaSignInAlt /> <span>Entrar</span>
-        </NavLink>
-        <NavLink onClick={handleClick} to="/certificate">
-          <FaCertificate /> <span>Certificado</span>
-        </NavLink>
+ 
+       
         <NavLink onClick={handleClick} to="/bibliotecanucleos">
           <FaBook /> <span>Núcleos</span>
-        </NavLink>
-        <NavLink onClick={handleClick} to="/oficina">
-          <FaTools /> <span>Oficina</span>
         </NavLink>
       </div>
     </nav>
