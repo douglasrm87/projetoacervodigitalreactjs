@@ -69,6 +69,7 @@ export default function Dashboard() {
             <option value="2027-01">2027-01</option>
             <option value="2027-02">2027-02</option>
             <option value="2028-01">2028-01</option>
+            <option value="2028-01">2028-02</option>
           </select>
         </div>
 
