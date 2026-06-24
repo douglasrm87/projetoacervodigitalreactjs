@@ -66,11 +66,16 @@ export default function Dashboard() {
           <label>Núcleo:</label>
           <select value={nucleo} onChange={(e) => setNucleo(e.target.value)}>
             <option value="">Todos</option>
+            <option value="Escritório Experimental de Design, Design Gráfico e PP">Escritório Experimental de Design, Design Gráfico e PP </option>
+            <option value="Agência Experimental de Cinema e Audiovisual">Agência Experimental de Cinema e Audiovisual</option>
             <option value="Brinquedoteca">Brinquedoteca</option>
-            <option value="LPG">LPG</option>
-            <option value="LTD">LTD</option>
+            <option value="Laboratório de Praticas de Gestão">Laboratório de Praticas de Gestão</option>
+            <option value="Laboratório de Transformação Digital">Laboratório de Transformação Digital</option>
+            <option value="Habitação e Escritório Modelo">Habitação e Escritório Modelo</option>
+            <option value="Escritório Modelo de Inovação & Empreendedorismo na Engenharia">Escritório Modelo de Inovação & Empreendedorismo na Engenharia</option>
             <option value="Centro de Moda">Centro de Moda</option>
-            <option value="EMI&EEngenharia">EMI&EEngenharia</option>
+            <option value="Agência Experimental de Jornalismo">Agência Experimental de Jornalismo</option>
+            <option value="Garfo - Centro Gastronômico">Garfo - Centro Gastronômico</option>
           </select>
         </div>
 
@@ -109,42 +114,47 @@ export default function Dashboard() {
 
         <div className="map-section">
           <MapBrasil
-            onHover={setHoverData}
-            nucleoFiltro={nucleo}                 // ✅ PASSANDO FILTRO
-            semestreFiltro={semestre}            // ✅ PASSANDO FILTRO
-            regionalFiltro={regional}
+                      
+            onHover={(data) => {
+                setHoverData(data);
 
-            onClickState={(state, data) => {
-              setSelectedState(state);
-              setTableData(data);
+                if (data?.tipo === "regional" && data?.regional !== selectedState) {
+                  // ✅ LIMPA TABELA AO PASSAR MOUSE
+                  setSelectedState(null);
+                  setTableData([]);
+                }
+              }}
 
+              nucleoFiltro={nucleo}                 // ✅ PASSANDO FILTRO
+              semestreFiltro={semestre}            // ✅ PASSANDO FILTRO
+              regionalFiltro={regional}
 
-              // ✅ evita múltiplos scrolls
-                 
-              if (!scrollLock.current) {
-                scrollLock.current = true;
+              onClickState={(state, data) => {
+                setSelectedState(state);
+                setTableData(data);
+                // ✅ evita múltiplos scrolls
 
-                setTimeout(() => {
-                  tabelaRef.current?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                  });
+                if (!scrollLock.current) {
+                  scrollLock.current = true;
 
                   setTimeout(() => {
-                    scrollLock.current = false;
-                  }, 1000);
-                }, 150);
-              }
-            }}
+                    tabelaRef.current?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "center"
+                    });
+
+                    setTimeout(() => {
+                      scrollLock.current = false;
+                    }, 1000);
+                  }, 150);
+                }
+              }}
           />
         </div>
         {/* painel ao lado do mapa */}
         <div className="right-panel">
           <InfoPainel data={hoverData} />
-        
-
           {selectedState && (
-          
               <div className="right-panel" ref={tabelaRef}>
                 <TabelaUnidades
                   estado={selectedState}
@@ -153,10 +163,7 @@ export default function Dashboard() {
               </div>
           )}
         </div>
-
       </main>
-
-
     </div>
   );
 }

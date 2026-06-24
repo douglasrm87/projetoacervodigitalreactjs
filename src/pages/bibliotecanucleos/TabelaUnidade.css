@@ -14,7 +14,7 @@
 
 /* HOVER */
 .clickable-row:hover {
-  background: #F5F7FA;
+  background: #f5f7ff;
 }
 
 
@@ -103,7 +103,7 @@
 
 /* HOVER */
 .accordion-content tr:hover td {
-  background: #f8fafc;
+  background: #89aed3;
   color: #0f172a; /* Texto escuro no hover claro */
 }
 

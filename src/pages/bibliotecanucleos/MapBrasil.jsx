@@ -111,7 +111,8 @@ export default function MapBrasil({ onHover, onClickState,
         municipio,
         ies: totalIes,
         nucleos: totalNucleos,
-        publico: totalPublico
+        publico: totalPublico,
+        tipo: "regional" // ✅ IDENTIFICAÇÃO
       });
 
     } catch (e) {
@@ -215,19 +216,19 @@ export default function MapBrasil({ onHover, onClickState,
                     fillColor: '#eeeeee',
                     color: '#12284C',
                     weight: 3,
-                    fillOpacity: 1
+                    fillOpacity: 0.15
             }}
             eventHandlers={{
               mouseover: (e) => {
                 e.target.setStyle({
-                  fillOpacity: 0.35,
+                  fillOpacity: 3,
                   weight: 3
                 });
                 handleHover(uf.sigla);
               },
               mouseout: (e) => {
                 e.target.setStyle({
-                  fillOpacity: 0.15,
+                  fillOpacity: 3,
                   weight: 2
                 });
               },
