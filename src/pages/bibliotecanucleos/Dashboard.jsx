@@ -18,13 +18,17 @@ export default function Dashboard() {
   const [semestre, setSemestre] = useState('');
   const [regional, setRegional] = useState('');
   
-  
   // ✅ sempre que mudar filtro → reseta tela
   useEffect(() => {
     setSelectedState(null);
     setTableData([]);
   }, [regional, nucleo, semestre]);
 
+  const dadosPainel = selectedState
+      ? 
+          { ...hoverData, regional: selectedState } // ou montar com dados corretos
+      : 
+          hoverData;
 
   return (
     <div className="dashboard">
@@ -110,20 +114,17 @@ export default function Dashboard() {
       </div>
 
 
-      <main className="main">
+      <main className="dashboard-grid">
 
-        <div className="map-section">
+        <div className="map-area">
           <MapBrasil
                       
             onHover={(data) => {
-                setHoverData(data);
+              // ✅ Se já tem seleção, NÃO mexe
+              if (selectedState) return;
 
-                if (data?.tipo === "regional" && data?.regional !== selectedState) {
-                  // ✅ LIMPA TABELA AO PASSAR MOUSE
-                  setSelectedState(null);
-                  setTableData([]);
-                }
-              }}
+              setHoverData(data);
+            }}
 
               nucleoFiltro={nucleo}                 // ✅ PASSANDO FILTRO
               semestreFiltro={semestre}            // ✅ PASSANDO FILTRO
@@ -152,8 +153,8 @@ export default function Dashboard() {
           />
         </div>
         {/* painel ao lado do mapa */}
-        <div className="right-panel">
-          <InfoPainel data={hoverData} />
+        <div className="panel-area">
+          <InfoPainel data={dadosPainel} />
           {selectedState && (
               <div className="right-panel" ref={tabelaRef}>
                 <TabelaUnidades

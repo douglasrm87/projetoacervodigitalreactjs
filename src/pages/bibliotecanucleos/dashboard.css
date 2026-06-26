@@ -1,5 +1,5 @@
 :root {
-  --primary: #12284C;     /* Azul YDUQS */
+  --primary: #12284C;
   --primary-light: #002F6C;
   --bg: #F5F7FA;
   --white: #FFFFFF;
@@ -15,6 +15,7 @@ body {
   margin: 0;
   font-family: Arial;
   background: var(--bg);
+  overflow-x: hidden; /* ✅ evita scroll lateral */
 }
 
 .dashboard {
@@ -28,6 +29,7 @@ body {
   padding: 16px;
   font-weight: 600;
   letter-spacing: 0.5px;
+  word-wrap: break-word; /* ✅ evita quebra */
 }
 
 /* ========================= */
@@ -43,7 +45,8 @@ body {
 
 .map-section {
   flex: 2;
-  min-width: 300px;
+  min-width: 0; /* ✅ evita estouro em flex */
+  width: 100%;
 }
 
 .map {
@@ -51,6 +54,7 @@ body {
   border-radius: 8px;
   width: 100%;
   border: 1px solid var(--border);
+  overflow: hidden; /* ✅ garante encaixe */
 }
 
 .map iframe,
@@ -60,9 +64,15 @@ body {
   height: 100%;
 }
 
+/* ✅ evita mapa quebrar layout */
+.map iframe {
+  display: block;
+}
+
 .details-section {
   flex: 1;
-  min-width: 280px;
+  min-width: 0; /* ✅ ajuste crítico */
+  width: 100%;
 }
 
 .info-box {
@@ -84,12 +94,18 @@ body {
   flex-wrap: wrap;
 }
 
+/* ✅ garante cards responsivos */
+.metrics > * {
+  flex: 1 1 140px;
+}
+
 /* ========================= */
-/* BOTÃO (AGORA NEUTRO) */
+/* BOTÃO */
 /* ========================= */
 
 .btn-limpar {
   width: fit-content;
+  max-width: 100%;
   padding: 6px 12px;
   white-space: nowrap;
   background: var(--primary);
@@ -110,6 +126,7 @@ body {
 .table-container {
   padding: 20px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* ✅ melhor mobile */
 }
 
 table {
@@ -128,6 +145,7 @@ th {
 td, th {
   padding: 10px;
   border: 1px solid var(--border);
+  text-align: left;
 }
 
 tr:hover td {
@@ -145,6 +163,7 @@ tr:hover td {
   gap: 16px;
   max-height: 600px;
   overflow-y: auto;
+  width: 100%;
 }
 
 .right-panel > * {
@@ -161,10 +180,15 @@ tr:hover td {
 @media (max-width: 900px) {
   .main {
     flex-direction: column;
+    padding: 16px;
   }
 
   .map {
     height: 350px;
+  }
+
+  .right-panel {
+    max-height: none; /* ✅ evita scroll preso */
   }
 }
 
@@ -177,13 +201,19 @@ tr:hover td {
     height: 280px;
   }
 
+  .metrics {
+    flex-direction: column; /* ✅ melhor leitura */
+  }
+
+  .table-container {
+    padding: 10px;
+  }
+
   .metrics-table {
     overflow-x: auto;
   }
 
   .metrics-table th {
-    background-color: var(--primary);
-    color: var(--white);
     font-size: 12px;
   }
 
@@ -192,9 +222,27 @@ tr:hover td {
     font-weight: bold;
   }
 }
+
+/* ✅ EXTRA: telas muito pequenas */
+@media (max-width: 400px) {
+  .header {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .btn-limpar {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ========================= */
+/* FILTROS */
+/* ========================= */
+
 .filtros-container {
   display: flex;
-  justify-content: flex-end; /* ✅ joga pra direita */
+  justify-content: flex-end;
   gap: 16px;
   padding: 10px 20px;
   flex-wrap: wrap;
@@ -204,6 +252,7 @@ tr:hover td {
   display: flex;
   flex-direction: column;
   min-width: 160px;
+  flex: 1 1 160px; /* ✅ responsivo real */
 }
 
 .filtro-item label {
@@ -217,20 +266,43 @@ tr:hover td {
   border-radius: 6px;
   border: 1px solid #E5E7EB;
   background: #ffffff;
+  width: 100%; /* ✅ alinhamento perfeito */
 }
 
-/* ✅ MOBILE (iPhone principalmente) */
+/* ✅ MOBILE */
 @media (max-width: 600px) {
   .filtros-container {
-    justify-content: center; /* centraliza no celular */
+    justify-content: center;
     gap: 10px;
+    padding: 10px;
   }
 
   .filtro-item {
     width: 100%;
   }
+}
 
-  .filtro-item select {
-    width: 100%;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* ✅ mapa maior, painel equilibrado */
+  gap: 12px; /* ✅ bem próximo */
+  padding: 16px;
+}
+
+/* MAPA */
+.map-area {
+  width: 100%;
+}
+
+/* PAINEL */
+.panel-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr; /* ✅ vira coluna */
   }
 }

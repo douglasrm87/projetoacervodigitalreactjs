@@ -9,11 +9,13 @@ import { Marker } from 'react-leaflet';
 
 
 // ✅ POSIÇÃO REAL DOS ESTADOS (CENTRO APROXIMADO)
+// lat menor move para cima e lat maior move para baixo
+// lng menor move a direita e lng maior move a esquerda
 const estados = [
-  { sigla: "WYDEN", lat: -15.96, lng: -51.51 },
-  { sigla: "NORDESTE", lat: -8.28, lng: -43.07 },
-  { sigla: "NORTE-SUL", lat: -6.28, lng: -58.68 },
-  { sigla: "SUDESTE", lat: -26.33, lng: -50 }
+  { sigla: "WYDEN", lat: -11.96, lng: -51.51 },
+  { sigla: "NORDESTE", lat: -6.28, lng: -40.07 },
+  { sigla: "NORTE-SUL", lat: -5.28, lng: -62.68 },
+  { sigla: "SUDESTE", lat: -24.33, lng: -46 }
   
 ];
 
@@ -191,18 +193,25 @@ export default function MapBrasil({ onHover, onClickState,
   return (
     
       <MapContainer
-            bounds={brasilBounds}
-            maxBounds={brasilBounds}
-            maxBoundsViscosity={1.0}
+          bounds={brasilBounds}
+          maxBounds={brasilBounds}
+          maxBoundsViscosity={1.0}
 
-            minZoom={4}
-            maxZoom={6}
+          center={[-14.2350, -51.9253]} // ✅ centro do Brasil
+          zoom={4} // ✅ zoom inicial ideal
 
-            zoomControl={true}
-            scrollWheelZoom={true}
+          minZoom={4}
+          maxZoom={6}
 
-            style={{ height: "500px" }}
-          >
+          zoomControl={true}
+          scrollWheelZoom={true}
+
+          style={{
+            height: "clamp(280px, 60vh, 500px)", // ✅ responsivo
+            width: "100%",                       // ✅ sempre ocupa container
+            
+          }}
+        >
 
 
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
@@ -211,7 +220,7 @@ export default function MapBrasil({ onHover, onClickState,
         <CircleMarker
                 key={i}
                 center={[uf.lat, uf.lng]}
-                radius={55}
+                radius={70}
                 pathOptions={{
                     fillColor: '#eeeeee',
                     color: '#12284C',
@@ -236,8 +245,12 @@ export default function MapBrasil({ onHover, onClickState,
             }}
           >
             
-          <Tooltip direction="top" offset={[0, -10]}>
-            <strong>{uf.sigla}</strong>
+          <Tooltip
+              direction="top"
+              offset={[0, -60]} // ✅ aumenta o deslocamento pra cima
+              opacity={1}
+            >
+              <strong>{uf.sigla}</strong>
           </Tooltip>
             
             
