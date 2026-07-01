@@ -9,14 +9,16 @@ import { Marker } from 'react-leaflet';
 
 
 // ✅ POSIÇÃO REAL DOS ESTADOS (CENTRO APROXIMADO)
-// lat menor move para cima e lat maior move para baixo
-// lng menor move a direita e lng maior move a esquerda
+// lat menor move  cima
+// lng menor move  direita 
+// lat maior move  baixo
+// lng maior move  esquerda
 const estados = [
-  { sigla: "WYDEN", lat: -11.96, lng: -51.51 },
-  { sigla: "NORDESTE", lat: -6.28, lng: -40.07 },
-  { sigla: "NORTE-SUL", lat: -5.28, lng: -62.68 },
-  { sigla: "SUDESTE", lat: -24.33, lng: -46 }
-  
+  { sigla: "NORTE-SUL", lat: -5,  lng: -62 },
+  { sigla: "NORDESTE",  lat: -8,  lng: -42 },
+
+  { sigla: "WYDEN",     lat: -13.5, lng: -53 },
+  { sigla: "SUDESTE",   lat: -24.5, lng: -48.5 }
 ];
 
 const cidades = [
