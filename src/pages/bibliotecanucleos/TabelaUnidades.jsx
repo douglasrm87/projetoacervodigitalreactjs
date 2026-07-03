@@ -58,18 +58,18 @@ export default function TabelaUnidades({ estado, data }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Núcleo - Clique e conheça o projeto</th>
+                      <th>Núcleos de extensão - Para saber mais, clique abaixo</th>
                       <th>Curso</th>
                       <th>Público</th>
                     </tr>
                   </thead>
-
+{/*title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`} */}
                   <tbody>
                     {groupedData[instituicao].map(item => (
                       <tr
                         key={item.id}
                         className="clickable-row"
-                        title={`Professor Orientador: ${item.professor_orientador || "Não informado"}`}
+                        
                         onClick={() =>
                           navigate(`/detalhe/${item.id}`, { state: item })
                         }

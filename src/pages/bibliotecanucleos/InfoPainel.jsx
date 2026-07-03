@@ -16,8 +16,9 @@ export default function InfoPainel({ data }) {
 
   return (
     <div className="info-box">
-
-      <h2 className="titulo">Regional: {data.regional}</h2>
+      <h1>Selecione uma Regional ou cidade no mapa.
+</h1>
+      <h2 className="titulo">Cidade: {data.regional}</h2>
 
       <div className="metrics-wrapper">
         <table className="metrics-table">

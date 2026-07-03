@@ -11,7 +11,7 @@ export default function DetalheNucleoExtensao() {
   const navigate = useNavigate();
 
   const [detalhes, setDetalhes] = useState(null);
-  const [imagemSelecionada, setImagemSelecionada] = useState(null);
+  //const [imagemSelecionada, setImagemSelecionada] = useState(null);
 
   useEffect(() => {
     async function fetchDetalhes() {
@@ -68,7 +68,7 @@ export default function DetalheNucleoExtensao() {
 
       {/* ✅ IMAGENS */}
       <h3>Evidências</h3>
-
+{/*
       <div className="imagens">
         {[detalhes.evidencia01_foto, detalhes.evidencia02_foto, detalhes.evidencia03_foto]
           .filter(Boolean)
@@ -77,14 +77,15 @@ export default function DetalheNucleoExtensao() {
               Evidência {i + 1}
             </button>
           ))}
-      </div>
+      </div>*/}
 
       {/* ✅ PREVIEW IMAGEM */}
+      {/*
       {imagemSelecionada && (
         <div className="preview">
           <img src={imagemSelecionada} alt="preview" style={{ maxWidth: "100%" }} />
         </div>
-      )}
+      )}*/}
       
       {/* ✅ Todas as imagens */}
       

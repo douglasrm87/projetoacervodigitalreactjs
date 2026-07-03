@@ -35,7 +35,8 @@ export default function Dashboard() {
 
       {/* HEADER */}
       <header className="header">
-        <h1>Bem-vindo à nossa biblioteca digital. Conheça os projetos extensionistas e explore iniciativas que geram impacto positivo na comunidade.</h1>
+        <h1>Bem-vindo à nossa Biblioteca Digital</h1>
+        <h3>Conheça os projetos extensionistas e explore iniciativas que geram impacto positivo na comunidade</h3>
       </header>
 
 
@@ -62,6 +63,18 @@ export default function Dashboard() {
             <option value="NORDESTE">NORDESTE</option>
             <option value="SUDESTE">SUDESTE</option>
             <option value="WYDEN">WYDEN</option>
+          </select>
+        </div>
+
+          {/* Regional */}
+        <div className="filtro-item">
+          <label>IES:</label>
+          <select value={regional} onChange={(e) => setRegional(e.target.value)}>
+            <option value="">Todos</option>
+            <option value="FACULDADE ESTACIO DO PARA">FACULDADE ESTACIO DO PARA</option>
+            <option value="FACULDADE ESTACIO DO AMAPA">FACULDADE ESTACIO DO AMAPA</option>
+            <option value="FACULDADE ESTACIO DE CURITIBA">FACULDADE ESTACIO DE CURITIBA</option>
+            <option value="FACULDADE ESTACIO DE CASTANHAL">FACULDADE ESTACIO DE CASTANHAL</option>
           </select>
         </div>
 

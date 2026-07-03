@@ -8,7 +8,7 @@ function App() {
   
   return (
     <>
-      <h1>Biblioteca de Núcleos de Extensão.</h1>
+      <h1>Biblioteca de Núcleos de Extensão</h1>
       {/* A NavBar é necessária para que a barra de navegação seja exibida em todas as páginas da aplicação, permitindo que os usuários naveguem facilmente entre as diferentes seções do site. */}
       {/* Sem a NavBar, os usuários teriam dificuldade em acessar outras páginas da aplicação, o que poderia resultar em uma experiência de usuário ruim e dificultar a navegação. */}
       {/* A NavBar é uma parte fundamental do layout da aplicação, proporcionando uma maneira intuitiva e acessível para os usuários explorarem o conteúdo do site. */}
