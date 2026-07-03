@@ -7,8 +7,6 @@ export default function InfoPainel({ data }) {
     return (
       <div className="info-box">
         Selecione uma{" "}
-        <span className="highlight-primary">Regional</span>{" "}
-        ou{" "}
         <span className="highlight-secondary">Cidade</span>{" "}
         no mapa
       </div>
@@ -18,7 +16,7 @@ export default function InfoPainel({ data }) {
     <div className="info-box">
       <h1>Selecione uma Regional ou cidade no mapa.
 </h1>
-      <h2 className="titulo">Cidade: {data.regional}</h2>
+      <h2 className="titulo">Regional: {data.regional}</h2>
 
       <div className="metrics-wrapper">
         <table className="metrics-table">

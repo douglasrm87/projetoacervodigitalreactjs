@@ -80,9 +80,10 @@ const gpsIcon = new L.Icon({
 });
 
 export default function MapBrasil({ onHover, onClickState,
-    nucleoFiltro, 
-    semestreFiltro,
-    regionalFiltro
+        nucleoFiltro, 
+        semestreFiltro,
+        regionalFiltro,
+        iesFiltro
     }) {
 
   // ✅ HOVER
@@ -145,6 +146,12 @@ export default function MapBrasil({ onHover, onClickState,
       if (regionalFiltro) {
         query = query.ilike('regional', `%${regionalFiltro}%`);
       }
+
+      // ✅ FILTRO IES
+      if (iesFiltro) {
+        query = query.ilike('instituicao_ensino', `%${iesFiltro}%`);
+      }
+      
       
 
       const { data } = await query
@@ -174,6 +181,10 @@ export default function MapBrasil({ onHover, onClickState,
     // ✅ FILTRO SEMESTRE
     if (semestreFiltro) {
       query = query.ilike('periodo_realizacao', `%${semestreFiltro}%`);
+    }
+    // ✅ FILTRO IES
+    if (iesFiltro) {
+      query = query.ilike('instituicao_ensino', `%${iesFiltro}%`);
     }
 
     const { data } = await query

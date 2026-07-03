@@ -4,7 +4,13 @@ import InfoPainel from './InfoPainel';
 import TabelaUnidades from './TabelaUnidades';
 import './dashboard.css';
 import { useEffect } from 'react';
+import { supabase } from '../../infra/supabase/supabaseClient';
+
 export default function Dashboard() {
+
+  // Lista de IES
+  const [listaIES, setListaIES] = useState([]);
+  const [ies, setIES] = useState('');
 
   const [hoverData, setHoverData] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
@@ -18,11 +24,78 @@ export default function Dashboard() {
   const [semestre, setSemestre] = useState('');
   const [regional, setRegional] = useState('');
   
+  // para ao clicar na IES abrir a cidade no lado direito
+  useEffect(() => {
+
+      const carregarDadosIES = async () => {
+
+        if (!ies) return;
+
+        const { data, error } = await supabase
+          .from('Lancamento_Nucleo_Extensao')
+          .select('*')
+          .eq('instituicao_ensino', ies);
+
+        if (error) {
+          console.error(error);
+          return;
+        }
+
+        setTableData(data);
+
+        // Apenas para habilitar a exibição da tabela
+        setSelectedState(ies);
+
+        setTimeout(() => {
+          tabelaRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, 200);
+      };
+
+      carregarDadosIES();
+
+    }, [ies]);
+  
+  // Lista de IES
+  useEffect(() => {
+      const carregarIES = async () => {
+        let query = supabase
+          .from('Lancamento_Nucleo_Extensao')
+          .select('instituicao_ensino');
+
+        if (regional) {
+          query = query.eq('regional', regional);
+        }
+        
+        const { data, error } = await query;
+        console.log("Dados: ",data);
+
+        if (error) {
+          console.error(error);
+          return;
+        }
+
+        const iesUnicas = [
+          ...new Set(
+            data
+              .map(item => item.instituicao_ensino?.trim())
+              .filter(Boolean)
+          )
+        ].sort();
+
+        setListaIES(iesUnicas.sort());
+      };
+
+      carregarIES();
+    }, [regional]);
+
   // ✅ sempre que mudar filtro → reseta tela
   useEffect(() => {
     setSelectedState(null);
     setTableData([]);
-  }, [regional, nucleo, semestre]);
+  }, [regional, nucleo, semestre,ies]);
 
   const dadosPainel = selectedState
       ? 
@@ -66,17 +139,23 @@ export default function Dashboard() {
           </select>
         </div>
 
-          {/* Regional */}
+          {/* IES */}
         <div className="filtro-item">
-          <label>IES:</label>
-          <select value={regional} onChange={(e) => setRegional(e.target.value)}>
-            <option value="">Todos</option>
-            <option value="FACULDADE ESTACIO DO PARA">FACULDADE ESTACIO DO PARA</option>
-            <option value="FACULDADE ESTACIO DO AMAPA">FACULDADE ESTACIO DO AMAPA</option>
-            <option value="FACULDADE ESTACIO DE CURITIBA">FACULDADE ESTACIO DE CURITIBA</option>
-            <option value="FACULDADE ESTACIO DE CASTANHAL">FACULDADE ESTACIO DE CASTANHAL</option>
-          </select>
-        </div>
+            <label>IES:</label>
+
+            <select
+              value={ies}
+              onChange={(e) => setIES(e.target.value)}
+            >
+              <option value="">Todos</option>
+
+              {listaIES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div> 
 
         {/* Núcleo */}
         <div className="filtro-item">
@@ -119,6 +198,7 @@ export default function Dashboard() {
             setNucleo('');
             setSemestre('');
             setRegional('');
+            setIES ('');
           }}
           style={{ height: '30px' }}
         >
@@ -142,6 +222,7 @@ export default function Dashboard() {
               nucleoFiltro={nucleo}                 // ✅ PASSANDO FILTRO
               semestreFiltro={semestre}            // ✅ PASSANDO FILTRO
               regionalFiltro={regional}
+              iesFiltro={ies}
 
               onClickState={(state, data) => {
                 setSelectedState(state);

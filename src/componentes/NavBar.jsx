@@ -2,7 +2,6 @@ import "./Navbar.module.css";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
-  FaHome,
   FaBook,
 } from "react-icons/fa";
 
@@ -28,9 +27,7 @@ export default function Navbar() {
       </div>
 
       <div className={`nav-links ${open ? "open" : ""}`}>
-        <NavLink onClick={handleClick} to="/">
-          <FaHome /> <span>Início</span>
-        </NavLink>
+
 
  
        
