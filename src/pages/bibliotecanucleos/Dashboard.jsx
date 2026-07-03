@@ -40,7 +40,7 @@ export default function Dashboard() {
           console.error(error);
           return;
         }
-
+ 
         setTableData(data);
 
         // Apenas para habilitar a exibição da tabela
