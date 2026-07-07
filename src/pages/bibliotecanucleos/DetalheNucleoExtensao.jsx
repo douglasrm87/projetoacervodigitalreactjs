@@ -60,7 +60,7 @@ export default function DetalheNucleoExtensao() {
           <tr><td>Curso:</td><td>{detalhes.curso}</td></tr>
           <tr><td>Professor(a) Orientador(a):</td><td>{detalhes.professor_orientador}</td></tr>
           <tr><td>Descrição do Projeto:</td><td>{detalhes.descricao_projeto}</td></tr>
-          <tr><td>Público-alvo</td><td>{detalhes.publico_alvo}</td></tr>
+          <tr><td>Público-alvo:</td><td>{detalhes.publico_alvo}</td></tr>
           <tr><td>Público impactado:</td><td>{detalhes.publico_impactado}</td></tr>
           <tr><td>Impactos Sociais:</td><td>{detalhes.impactos_sociais}</td></tr>
         </tbody>
