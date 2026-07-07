@@ -46,8 +46,8 @@ export default function DetalheNucleoExtensao() {
             <td>{detalhes.municipio}</td>
           </tr>
           <tr>
-            <td>Público</td>
-            <td>{detalhes.publico_impactado}</td>
+            <td>Semestre</td>
+            <td>{detalhes.periodo_realizacao}</td>
           </tr>
         </tbody>
       </table>
@@ -57,12 +57,12 @@ export default function DetalheNucleoExtensao() {
 
       <table className="table-rounded">
         <tbody>
-          <tr><td>Curso</td><td>{detalhes.curso}</td></tr>
-          <tr><td>Professor</td><td>{detalhes.professor_orientador}</td></tr>
-          <tr><td>Descrição</td><td>{detalhes.descricao_projeto}</td></tr>
-          <tr><td>Impactos</td><td>{detalhes.impactos_sociais}</td></tr>
-          <tr><td>Período</td><td>{detalhes.periodo_realizacao}</td></tr>
-          <tr><td>Público Alvo</td><td>{detalhes.publico_alvo}</td></tr>
+          <tr><td>Curso:</td><td>{detalhes.curso}</td></tr>
+          <tr><td>Professor(a) Orientador(a):</td><td>{detalhes.professor_orientador}</td></tr>
+          <tr><td>Descrição do Projeto:</td><td>{detalhes.descricao_projeto}</td></tr>
+          <tr><td>Público-alvo</td><td>{detalhes.publico_alvo}</td></tr>
+          <tr><td>Público impactado:</td><td>{detalhes.publico_impactado}</td></tr>
+          <tr><td>Impactos Sociais:</td><td>{detalhes.impactos_sociais}</td></tr>
         </tbody>
       </table>
 
@@ -91,7 +91,6 @@ export default function DetalheNucleoExtensao() {
       
       <div  >
           <p></p>
-          <h3>Todas as Evidências</h3>
           <div style={{    display: "flex",  gap: "10px",  justifyContent: "space-between"   }} >
               <img src={detalhes.evidencia01_foto} alt="preview" style={{ maxWidth: "32%" }} />
               <img src={detalhes.evidencia02_foto} alt="preview" style={{ maxWidth: "32%" }} />
