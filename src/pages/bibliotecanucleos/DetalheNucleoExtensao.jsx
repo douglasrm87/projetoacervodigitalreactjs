@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from '../../infra/supabase/supabaseClient';
 
+
 import "./DetalheNucleoExtensao.css";
 import { useNavigate } from "react-router-dom";
 
@@ -10,8 +11,154 @@ export default function DetalheNucleoExtensao() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [periodos, setPeriodos] = useState([])
+  const [selectedPeriodo, setSelectedPeriodo] = useState('')
+
   const [detalhes, setDetalhes] = useState(null);
-  //const [imagemSelecionada, setImagemSelecionada] = useState(null);
+  const [detalhesOriginais, setDetalhesOriginais] = useState(null);
+  
+  useEffect(() => {
+  async function carregarPeriodos() {
+    const { data, error } = await supabase
+      .from("Lancamento_Nucleo_Extensao")
+      .select("periodo_realizacao")
+      .not("periodo_realizacao", "is", null)
+      .order("periodo_realizacao", { ascending: true });
+
+    if (error) {
+      console.error("Erro ao carregar períodos:", error);
+      return;
+    }
+
+    const periodosUnicos = [
+      ...new Set(
+        data
+          .map(item => item.periodo_realizacao)
+          .filter(Boolean)
+      )
+    ];
+
+    setPeriodos(periodosUnicos);
+  }
+
+  carregarPeriodos();
+}, []);
+useEffect(() => {
+  async function fetchDetalhesPorId() {
+    const { data, error } = await supabase
+      .from("Lancamento_Nucleo_Extensao")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    if (data) {
+      setDetalhes(data);
+      setDetalhesOriginais(data);
+      setSelectedPeriodo(data.periodo_realizacao || '');
+    }
+  }
+
+  fetchDetalhesPorId();
+}, [id]);
+  
+  useEffect(() => {
+    if (!detalhesOriginais) return;
+
+    async function carregarPeriodos() {
+      const { data, error } = await supabase
+        .from("Lancamento_Nucleo_Extensao")
+        .select("periodo_realizacao")
+        .eq("instituicao_ensino", detalhesOriginais.instituicao_ensino)
+        .eq("municipio", detalhesOriginais.municipio)
+        .eq("curso", detalhesOriginais.curso)
+        .eq("nome_nucleo_extensao", detalhesOriginais.nome_nucleo_extensao);
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      const periodosUnicos = [
+        ...new Set(
+          data
+            ?.map(item => item.periodo_realizacao)
+            .filter(Boolean)
+        )
+      ];
+
+      setPeriodos(periodosUnicos);
+    }
+
+    carregarPeriodos();
+  }, [detalhesOriginais]);
+
+  useEffect(() => {
+    if (!selectedPeriodo || !detalhesOriginais) return;
+
+    async function buscarPorPeriodo() {
+      const { data, error } = await supabase
+        .from("Lancamento_Nucleo_Extensao")
+        .select("*")
+        .eq("instituicao_ensino", detalhesOriginais.instituicao_ensino)
+        .eq("municipio", detalhesOriginais.municipio)
+        .eq("curso", detalhesOriginais.curso)
+        .eq("nome_nucleo_extensao", detalhesOriginais.nome_nucleo_extensao)
+        .eq("periodo_realizacao", selectedPeriodo)
+        .limit(1);
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        setDetalhes(data[0]);
+      } else {
+        alert(
+          `Não existem dados para o período ${selectedPeriodo}.`
+        );
+
+        // Mantém o período atual dos dados exibidos
+        setSelectedPeriodo(detalhes.periodo_realizacao);
+      }
+    }
+
+    buscarPorPeriodo();
+  }, [
+    selectedPeriodo,
+    detalhesOriginais,
+    detalhes?.periodo_realizacao
+  ]);
+
+const handlePeriodoChange = async (novoPeriodo) => {
+
+  const { data, error } = await supabase
+    .from("Lancamento_Nucleo_Extensao")
+    .select("*")
+    .eq("instituicao_ensino", detalhesOriginais.instituicao_ensino)
+    .eq("municipio", detalhesOriginais.municipio)
+    .eq("curso", detalhesOriginais.curso)
+    .eq("nome_nucleo_extensao", detalhesOriginais.nome_nucleo_extensao)
+    .eq("periodo_realizacao", novoPeriodo)
+    .limit(1);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  if (data?.length > 0) {
+    setDetalhes(data[0]);
+    setSelectedPeriodo(novoPeriodo);
+  } else {
+    alert(`Não existem dados para o período ${novoPeriodo}`);
+  }
+};
 
   useEffect(() => {
     async function fetchDetalhes() {
@@ -33,6 +180,19 @@ export default function DetalheNucleoExtensao() {
     <div className="detalhe-container">
       
       <h2>{detalhes.nome_nucleo_extensao}</h2>
+
+      <label htmlFor="semestre">Semestre</label>
+      <select
+  id="semestre"
+  value={selectedPeriodo}
+  onChange={(e) => handlePeriodoChange(e.target.value)}
+>
+  {periodos.map((periodo) => (
+    <option key={periodo} value={periodo}>
+      {periodo}
+    </option>
+  ))}
+</select>
 
       {/* ✅ TABELA PRINCIPAL */}
       <table className="table-rounded">
