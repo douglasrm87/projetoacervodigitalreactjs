@@ -43,6 +43,7 @@ export default function DetalheNucleoExtensao() {
 
   carregarPeriodos();
 }, []);
+
 useEffect(() => {
   async function fetchDetalhesPorId() {
     const { data, error } = await supabase
@@ -66,7 +67,7 @@ useEffect(() => {
   fetchDetalhesPorId();
 }, [id]);
   
-  useEffect(() => {
+useEffect(() => {
     if (!detalhesOriginais) return;
 
     async function carregarPeriodos() {
@@ -182,17 +183,6 @@ const handlePeriodoChange = async (novoPeriodo) => {
       <h2>{detalhes.nome_nucleo_extensao}</h2>
 
       <label htmlFor="semestre">Semestre</label>
-      <select
-  id="semestre"
-  value={selectedPeriodo}
-  onChange={(e) => handlePeriodoChange(e.target.value)}
->
-  {periodos.map((periodo) => (
-    <option key={periodo} value={periodo}>
-      {periodo}
-    </option>
-  ))}
-</select>
 
       {/* ✅ TABELA PRINCIPAL */}
       <table className="table-rounded">
@@ -207,7 +197,21 @@ const handlePeriodoChange = async (novoPeriodo) => {
           </tr>
           <tr>
             <td>Semestre</td>
-            <td>{detalhes.periodo_realizacao}</td>
+            <td>
+                  <select
+                      id="semestre"
+                      className="select-semestre"
+                      value={selectedPeriodo}
+                      onChange={(e) => handlePeriodoChange(e.target.value)}
+                    >
+                      {periodos.map((periodo) => (
+                        <option key={periodo} value={periodo}>
+                          {periodo}
+                        </option>
+                      ))}
+                  </select>
+            </td>
+                  
           </tr>
         </tbody>
       </table>
