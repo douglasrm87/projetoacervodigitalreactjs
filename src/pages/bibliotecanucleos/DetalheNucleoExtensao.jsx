@@ -182,7 +182,7 @@ const handlePeriodoChange = async (novoPeriodo) => {
       
       <h2>{detalhes.nome_nucleo_extensao}</h2>
 
-      <label htmlFor="semestre">Semestre</label>
+     
 
       {/* ✅ TABELA PRINCIPAL */}
       <table className="table-rounded">
