@@ -5,6 +5,7 @@ Ela diz ao npm: "Eu sei que há um descompasso nas versões declaradas, mas pode
 */
 // Nota técnica: Mapa interativo com a forma real dos estados do Brasil
 // Usando react-leaflet com GeoJSON para renderizar estados brasileiros
+// teste com renato
 
 import React, { useState, useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
